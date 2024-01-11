@@ -1,3 +1,5 @@
+# Notes for class
+
 ## Resolving merge conflicts
 
 git merge
