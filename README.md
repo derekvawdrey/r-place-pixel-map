@@ -14,6 +14,7 @@ Each point addresses authentication, database data, and websocket data respectiv
 
 - A realtime chat service
 - Abilitiy to buy credits
+- Daily quests to recieve free credits, or experience
 
 ## Mock picture
 
