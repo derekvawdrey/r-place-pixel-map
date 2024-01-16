@@ -18,3 +18,4 @@ Each point addresses authentication, database data, and websocket data respectiv
 ## Mock picture
 
 ![](mock1.png)
+![](mock2.png)
