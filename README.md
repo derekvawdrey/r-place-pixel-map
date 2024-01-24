@@ -23,6 +23,6 @@ Each point addresses authentication, database data, and websocket data respectiv
 
 ## Learned stuff
 
-- <nav> goes in <header>
-- Then <main></main>
-- Then <footer></footer>
+- `<nav>` goes in `<header>`
+- Then `<main></main>`
+- Then `<footer></footer>`
