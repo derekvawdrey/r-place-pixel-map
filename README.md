@@ -20,3 +20,9 @@ Each point addresses authentication, database data, and websocket data respectiv
 
 ![](mock1.png)
 ![](mock2.png)
+
+## Learned stuff
+
+- <nav> goes in <header>
+- Then <main></main>
+- Then <footer></footer>
