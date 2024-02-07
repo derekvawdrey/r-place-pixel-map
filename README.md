@@ -33,3 +33,4 @@ Each point addresses authentication, database data, and websocket data respectiv
 - `<nav>` goes in `<header>`
 - Then `<main></main>`
 - Then `<footer></footer>`
+- The deploy script isn't actually that complicated
