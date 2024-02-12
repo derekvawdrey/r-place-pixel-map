@@ -17,6 +17,38 @@ nav{
     margin-top:32px;
     box-sizing: border-box;
 
+    .profile-container{
+        display: flex;
+        flex-direction: row;
+        height:100%;
+        background-color:black;
+        border-radius:25px;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        padding-right:24px;
+        overflow: hidden;
+
+        .profile-circle{
+            border-radius:50%;
+            width:48px;
+            height:100%;
+            overflow: hidden;
+
+            img{
+                width:48px;
+                height:48px;
+                object-fit: cover;
+            }
+        }
+
+        .profile-username{
+            color:white;
+            font-weight:600;
+            margin-left:16px;
+        }
+    }
+
     .logo{
         font-weight: 900;
         font-size:30px;
@@ -38,10 +70,10 @@ nav{
         border-radius:50px;
         font-weight: 500;
         height:50px;
-        background-color: hsla(0, 0%, 100%, 0.7);
-        box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.05);
-        -webkit-backdrop-filter: blur(30px);
-        backdrop-filter: blur(30px);
+        background-color: hsla(0, 0%, 100%, 0.5);
+        box-shadow: 0 14px 20px 0 rgba(0, 0, 0, 0.05);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
         position: relative;
         gap:1em;
 
@@ -60,7 +92,7 @@ nav{
                 margin:10px;
                 text-align: center;
                 text-decoration: none;
-                color: rgba(15, 13, 13, 0.6);
+                color: #0f0d0d99;
                 transition:0.5s;
                 &:hover{
                     color: #222222;
@@ -93,7 +125,7 @@ nav{
         }
     }
 
-    @media (max-width: 769px) {
+    @media (max-width: 840px) {
         .mobile-menu-burger {
             display: flex !important;
             margin-left:32px;
@@ -128,9 +160,9 @@ nav{
         
         .line {
             width: 100%;
-            height: 4px;
-            background-color: #333;
-            transition: 0.4s;
+            height: 3px;
+            background-color: Black;
+            transition: 0.6s;
         }
         
         &.open .line:nth-child(1) {
