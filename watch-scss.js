@@ -5,18 +5,23 @@ const inputFilePath = './assets/css/scss/main.scss';
 const outputFilePath = './assets/css/main.css';
 
 const compileSass = () => {
-  const result = sass.renderSync({
-    file: inputFilePath,
-  });
+  try {
+    const result = sass.renderSync({
+      file: inputFilePath,
+    });
 
-  fs.writeFileSync(outputFilePath, result.css.toString());
-  console.log('SCSS compiled to CSS:', inputFilePath, '->', outputFilePath);
+    fs.writeFileSync(outputFilePath, result.css.toString());
+    console.log('SCSS compiled to CSS:', inputFilePath, '->', outputFilePath);
+  } catch (error) {
+    console.error('Error compiling SCSS:', error);
+  }
 };
 
 compileSass();
 
-fs.watchFile(inputFilePath, (curr, prev) => {
-  if (curr.mtime > prev.mtime) {
+fs.watch(inputFilePath, { encoding: 'utf-8' }, (eventType, filename) => {
+  if (eventType === 'change') {
+    console.log('File changed:', filename);
     compileSass();
   }
 });
