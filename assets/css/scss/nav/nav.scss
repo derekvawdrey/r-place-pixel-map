@@ -39,12 +39,13 @@ nav{
         padding:10px 15px;
         border-radius:50px;
         font-weight: 500;
-
+        height:50px;
         background-color: hsla(0, 0%, 100%, 0.7);
         box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.05);
         -webkit-backdrop-filter: blur(30px);
         backdrop-filter: blur(30px);
         position: relative;
+        gap:1em;
 
         .nav-links{
             display: flex;
@@ -55,8 +56,11 @@ nav{
             margin:0px;
             margin-right:16px;
             transition: 0.5s height, 0.5s opacity;
+            gap:0.5em;
+
             li a{
-                padding:4px 20px;
+                margin:10px;
+                text-align: center;
                 text-decoration: none;
                 color: rgba(15, 13, 13, 0.6);
                 transition:0.5s;
@@ -70,6 +74,7 @@ nav{
 
     .nav-links-container.open{
         .nav-links{
+            padding:1em;
             position: absolute;
             left: auto;
             top: 90px;
@@ -110,7 +115,6 @@ nav{
         flex-direction: column;
         justify-content: space-between;
         cursor: pointer;
-        margin: 20px;
         
         .line {
             width: 100%;
