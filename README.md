@@ -17,6 +17,7 @@ Each point addresses authentication, database data, and websocket data respectiv
 - Daily quests to recieve free credits, or experience
 
 ## Things I added for HTML
+
 - index.html (This is the main page that will display the pixel canvas, as well as a place to sign in and register)
 - login.html (This is where a user will login with a username and password)
 - profile_page.html (This is the profile page where a user will be able to change settings)
@@ -25,8 +26,8 @@ Each point addresses authentication, database data, and websocket data respectiv
 
 ## Mock picture
 
-![](mock1.png)
-![](mock2.png)
+![](doc/mock1.png)
+![](doc/mock2.png)
 
 ## Learned stuff
 
