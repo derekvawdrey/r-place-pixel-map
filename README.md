@@ -24,6 +24,12 @@ Each point addresses authentication, database data, and websocket data respectiv
 - register.html (This is the registration page where a user will be able to register an account)
 - get_credits.html (This is the credits page where a user can purchase credits)
 
+## Things I added for css
+
+- I decided to go with SCSS for compiling the css. While we haven't learned this in class, I believe it is better for me for organiziation.
+- I have modified all the page structures to better fit my design.
+- I have added a font from google fonts
+
 ## Mock picture
 
 ![](doc/mock1.png)
