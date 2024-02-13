@@ -33,8 +33,8 @@ Each point addresses authentication, database data, and websocket data respectiv
 
 ## Mock picture
 
-![](/doc/mock1.png)
-![](/doc/mock2.png)
+![](/docs/mock1.png)
+![](/docs/mock2.png)
 
 ## Learned stuff
 
