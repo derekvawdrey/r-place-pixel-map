@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     canvas.height = window.innerHeight * ratio;
     ctx.scale(ratio, ratio);
 
-    const gridSize = 10;
+    const gridSize = 20;
 
     ctx.strokeStyle = '#ccc';
     for (let i = 0; i < canvas.width; i += gridSize) {

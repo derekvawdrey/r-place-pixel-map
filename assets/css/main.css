@@ -282,6 +282,8 @@ footer .name {
   width: 100%;
   height: 100%;
   background-color: transparent;
+  position: absolute;
+  top: 0;
 }
 
 .game-bar {
@@ -292,8 +294,10 @@ footer .name {
   left: 0;
   right: 0;
   display: flex;
+  flex-wrap: nowrap;
+  padding-left: 32px;
   overflow-x: auto;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 2em;
   padding-bottom: 32px;
@@ -303,6 +307,8 @@ footer .name {
   border-radius: 50%;
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  min-height: 48px;
   cursor: pointer;
 }
 .game-bar .color.color-ffb3ba {
@@ -319,6 +325,21 @@ footer .name {
 }
 .game-bar .color.color-bae1ff {
   background-color: #bae1ff;
+}
+.game-bar .color.color-ff7f7f {
+  background-color: #ff7f7f;
+}
+.game-bar .color.color-7fbfff {
+  background-color: #7fbfff;
+}
+.game-bar .color.color-7fff7f {
+  background-color: #7fff7f;
+}
+.game-bar .color.color-ff7fff {
+  background-color: #ff7fff;
+}
+.game-bar .color.color-ffff7f {
+  background-color: #ffff7f;
 }
 
 /*# sourceMappingURL=main.css.map */
