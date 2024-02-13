@@ -14,7 +14,7 @@ main{
 .container {
     margin: 0 auto;
     max-width: 1100px;
-    min-height: 100vh;
+    min-height: auto;
     margin-top: 200px;
     position: relative;
     width: 100%;
@@ -25,7 +25,7 @@ main{
         border-radius:20px;
     }
 
-    .w50{
+    &.w50{
         width:50%;
         max-width:calc(1100px/2);
     }

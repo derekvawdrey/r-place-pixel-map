@@ -164,7 +164,7 @@ nav .mobile-menu-burger.open .line:nth-child(3) {
   display: flex;
 }
 
-main {
+body {
   margin: 0 auto;
   max-width: 1100px;
   min-height: 100vh;
@@ -176,7 +176,7 @@ main {
 .container {
   margin: 0 auto;
   max-width: 1100px;
-  min-height: 100vh;
+  min-height: auto;
   margin-top: 200px;
   position: relative;
   width: 100%;
@@ -186,7 +186,7 @@ main {
   background-color: white;
   border-radius: 20px;
 }
-.container .w50 {
+.container.w50 {
   width: 50%;
   max-width: 550px;
 }
