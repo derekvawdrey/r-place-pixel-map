@@ -208,6 +208,21 @@ main.game {
   max-width: 550px;
 }
 
+.bar {
+  background-color: lightgray;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  height: 48px;
+  position: relative;
+}
+.bar .filler {
+  background-color: green;
+  transition: 1s;
+  height: 100%;
+  display: block;
+}
+
 @media (max-width: 750px) {
   .w50 {
     width: 100% !important;
