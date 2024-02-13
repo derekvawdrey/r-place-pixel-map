@@ -3,6 +3,10 @@ var selectedColor = '#000';
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('pixelCanvas');
     const ctx = canvas.getContext("2d");
+    canvas.style.width ='100%';
+    canvas.style.height='100%';
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
 
     const ratio = window.devicePixelRatio;
     canvas.width = window.innerWidth * ratio;
