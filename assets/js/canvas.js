@@ -1,13 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('pixelCanvas');
-    const ctx = canvas.getContext('2d');
-    const pixelSize = 10;
+    const ctx = canvas.getContext("2d");
 
-    canvas.addEventListener('mousedown', function (event) {
-        const x = Math.floor(event.offsetX / pixelSize) * pixelSize;
-        const y = Math.floor(event.offsetY / pixelSize) * pixelSize;
 
-        ctx.fillStyle = 'black';
-        ctx.fillRect(x, y, pixelSize, pixelSize);
+
+
+    const gridSize = 10;
+
+    for(let i = 0; i < canvas.width; i += gridSize) {
+        for(let j = 0; j < canvas.height; j += gridSize) {
+            ctx.strokeRect(i, j, gridSize, gridSize);
+        }
+    }
+
+    canvas.addEventListener('click', function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = Math.floor((event.clientX - rect.left) / gridSize) * gridSize;
+        const y = Math.floor((event.clientY - rect.top) / gridSize) * gridSize;
+        ctx.fillRect(x, y, gridSize, gridSize);
     });
 });

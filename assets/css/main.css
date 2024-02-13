@@ -176,8 +176,14 @@ main {
   box-sizing: border-box;
 }
 main.game {
-  padding: 0px;
+  margin-top: 200px;
+  padding: 2em;
+  overflow: hidden;
   max-width: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
 }
 
 .container-row {
@@ -275,6 +281,7 @@ footer .name {
 #pixelCanvas {
   width: 100%;
   height: 100%;
+  background-color: white;
 }
 
 /*# sourceMappingURL=main.css.map */

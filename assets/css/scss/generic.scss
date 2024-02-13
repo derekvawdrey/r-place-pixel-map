@@ -15,8 +15,14 @@ main{
     box-sizing: border-box;
 
     &.game{
-        padding:0px;
+        margin-top:200px;
+        padding:2em;
+        overflow: hidden;
         max-width:unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius:20px;
     }
 }
 
