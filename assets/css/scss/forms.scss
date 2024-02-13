@@ -1,0 +1,31 @@
+form{
+
+    display:flex;
+    flex-direction: column;
+    gap:1em;
+
+    label{
+        display:none;
+    }
+
+    input{
+        padding: 1em;
+        border-radius: 20px;
+        appearance: none;
+        border: 0px;
+        font-size: 1em;
+        color: black;
+    }
+
+    button{
+        background: black;
+        padding: 1em;
+        font-size: 1em;
+        font-weight: 500;
+        border-radius:20px;
+        color:white;
+        border:0px;
+        cursor:pointer;
+    }
+
+}
