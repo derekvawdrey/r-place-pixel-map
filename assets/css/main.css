@@ -160,17 +160,23 @@ nav .mobile-menu-burger.open .line:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-.container-row {
-  display: flex;
+body {
+  background-color: #EEE;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  margin: 0px;
 }
 
-body {
+main {
   margin: 0 auto;
   max-width: 1100px;
   min-height: 100vh;
   position: relative;
   width: 100%;
   padding: 1em;
+}
+
+.container-row {
+  display: flex;
 }
 
 .container {
@@ -241,9 +247,17 @@ form button {
   cursor: pointer;
 }
 
-body {
-  background-color: #EEE;
-  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+footer {
+  background-color: hsla(0, 0%, 100%, 0.5);
+  box-shadow: 0 14px -20px 0 rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+}
+footer .name {
+  font-weight: 800;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,5 +1,8 @@
-.container-row{
-    display:flex;
+
+body{
+    background-color:#EEE;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    margin:0px;
 }
 
 main{
@@ -10,6 +13,11 @@ main{
     width: 100%;
     padding:1em;
 }
+
+.container-row{
+    display:flex;
+}
+
 
 .container {
     margin: 0 auto;
