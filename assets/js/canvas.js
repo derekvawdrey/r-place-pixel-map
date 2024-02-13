@@ -3,16 +3,9 @@ var selectedColor = '#000';
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('pixelCanvas');
     const ctx = canvas.getContext("2d");
-    canvas.style.width ='100%';
-    canvas.style.height='100%';
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
 
-    const ratio = window.devicePixelRatio;
-    canvas.width = window.innerWidth * ratio;
-    canvas.height = window.innerHeight * ratio;
-    ctx.scale(ratio, ratio);
-
+    let ratio = window.devicePixelRatio;
+    setupCanvasDim();
     const gridSize = 20;
 
     ctx.strokeStyle = '#ccc';
@@ -24,12 +17,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addEventListener('resize', function () {
-        const ratio = window.devicePixelRatio;
-        canvas.width = window.innerWidth * ratio;
-        canvas.height = window.innerHeight * ratio;
-        ctx.scale(ratio, ratio);
+        setupCanvasDim();
         redrawGrid();
     });
+
+    function setupCanvasDim() {
+        ratio = window.devicePixelRatio;
+        canvas.style.width ='100%';
+        canvas.style.height='100%';
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        ctx.scale(ratio, ratio);
+    }
     
     function redrawGrid() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
