@@ -16,7 +16,7 @@ Each point addresses authentication, database data, and websocket data respectiv
 - Abilitiy to buy credits
 - Daily quests to recieve free credits, or experience
 
-## Things I added for HTML
+## Things I added for HTML deliverable
 
 - index.html (This is the main page that will display the pixel canvas, as well as a place to sign in and register)
 - login.html (This is where a user will login with a username and password)
@@ -24,11 +24,12 @@ Each point addresses authentication, database data, and websocket data respectiv
 - register.html (This is the registration page where a user will be able to register an account)
 - get_credits.html (This is the credits page where a user can purchase credits)
 
-## Things I added for css
+## Things I added for CSS deliverable
 
-- I decided to go with SCSS for compiling the css. While we haven't learned this in class, I believe it is better for me for organiziation.
+- I decided to go with SCSS for compiling to css. While we haven't learned this in class, I believe it is better for me for organiziation.
 - I have modified all the page structures to better fit my design.
 - I have added a font from google fonts
+- I rearranged my repository so that it is easier to manage all my files.
 
 ## Mock picture
 

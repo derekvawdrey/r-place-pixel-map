@@ -3,20 +3,38 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Startup HTML - Login</title>
+        <title>Startup HTML</title>
         <link rel="icon" href="favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+        <link href="./assets/css/main.css" rel="stylesheet">
+        <script src="./assets/js/nav.js"></script>
     </head>
-    <body>
-        <header>
-            <nav>
-                <menu>
-                    <li><a href="index.html">Home</a></li>
+    <header>
+        <nav>
+            <a class="logo">Pixelated Place</a>
+            <div class="nav-links-container">
+                <a class="profile-container" href="./profile_page.html">
+                    <div class="profile-circle">
+                        <img src="./assets/images/profile.jpg">
+                    </div>
+                    <p class="profile-username">Profile name</p>
+                </a> 
+                <ul class="nav-links">
+                    <li><a href="login.html">Login</a></li>
                     <li><a href="register.html">Register</a></li>
-                    <li><a href="profile_page.html">Profile name here</a></li>
-                </menu>
-            </nav>
-        </header>
+                </ul>
+                <div class="mobile-menu-burger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </menu>
+        </nav>
+    </header>
         <main>
+            <div class="container">
             <h1>Login</h1>
             <form method="post" action="index.html">
                 <label for="name">Username</label>
@@ -25,6 +43,7 @@
                 <input type="text" id="password" placeholder="Password" />
                 <button type="submit">Login</button>
               </form>
+            </div>
         </main>
         <footer>
             <hr />

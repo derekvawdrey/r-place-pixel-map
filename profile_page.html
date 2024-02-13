@@ -3,24 +3,44 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Startup HTML - Login</title>
+        <title>Startup HTML</title>
         <link rel="icon" href="favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+        <link href="./assets/css/main.css" rel="stylesheet">
+        <script src="./assets/js/nav.js"></script>
     </head>
     <body>
         <header>
             <nav>
-                <menu>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="get_credits.html">Get credits</a></li>
-                    <li><a href="profile_page.html">Profile name here</a></li>
+                <a class="logo" href="index.html">Pixelated Place</a>
+                <div class="nav-links-container">
+                    <a class="profile-container" href="./profile_page.html">
+                        <div class="profile-circle">
+                            <img src="./assets/images/profile.jpg">
+                        </div>
+                        <p class="profile-username">Profile name</p>
+                    </a> 
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="get_credits.html">Get Credits</a></li>
+                    </ul>
+                    <div class="mobile-menu-burger">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
                 </menu>
             </nav>
         </header>
         <main>
-            <h1>Profile Page</h1>
-            <p>Credits: Database data placeholder</p>
-            <p>Placed pixels: Database data placeholder</p>
-            <div>Container for 3rd party call for graphs</div>
+            <div class="container">
+                <h1>Profile Page</h1>
+                <p>Credits: Database data placeholder</p>
+                <p>Placed pixels: Database data placeholder</p>
+                <div>Container for 3rd party call for graphs</div>
+            </div>
         </main>
         <footer>
             <hr />

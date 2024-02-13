@@ -21,4 +21,4 @@ git push
 
 ## CSS
 
-You can use HSL for color
+You can use HSL for color. Ensure that you organize your files well so that it doesnt become spaget hell.

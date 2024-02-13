@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.classList.toggle('transparent', isLogoTransparent);
     });
 
-    document.body.addEventListener('click', (event) => {
-        if (event.target.classList.contains('mobile-menu-burger')) {
-            navLinksContainer.classList.toggle('open');
-            mobileMenuBurger.classList.toggle('open');
-        }
-    });
+    mobileMenuBurger.addEventListener("click", toggleMenuBurger);
+    function toggleMenuBurger(){
+        navLinksContainer.classList.toggle('open');
+        mobileMenuBurger.classList.toggle('open');
+    }
+
 });
