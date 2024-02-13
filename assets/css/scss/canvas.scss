@@ -15,12 +15,14 @@
     right:0;
     display: flex;
     flex-wrap: nowrap;
-    padding-left:32px;
+    padding-left:16px;
+    padding-right:16px;
+    box-sizing: border-box;
     overflow-x: auto;
     justify-content: start;
     align-items: center;
     gap:2em;
-    padding-bottom:32px;
+    padding-bottom:16px;
     
 
     .color{
