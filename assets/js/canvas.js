@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('pixelCanvas');
     const ctx = canvas.getContext("2d");
 
-
+    const ratio = window.devicePixelRatio;
+    canvas.width = window.innerWidth * ratio;
+    canvas.height = window.innerHeight * ratio;
+    ctx.scale(ratio, ratio);
 
 
     const gridSize = 10;
