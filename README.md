@@ -26,7 +26,7 @@ Each point addresses authentication, database data, and websocket data respectiv
 
 ## Things I added for CSS deliverable
 
-- I decided to go with SCSS for compiling to css. While we haven't learned this in class, I believe it is better for me for organiziation.
+- I decided to go with SCSS for compiling to css. While we haven't learned this in class, I believe it is better for me for organiziation. **_Styles are also in main.css_**
 - I have modified all the page structures to better fit my design.
 - I have added a font from google fonts
 - I rearranged my repository so that it is easier to manage all my files.
