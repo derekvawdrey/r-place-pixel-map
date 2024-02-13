@@ -13,6 +13,11 @@ main{
     width: 100%;
     padding:1em;
     box-sizing: border-box;
+
+    &.game{
+        padding:0px;
+        max-width:unset;
+    }
 }
 
 .container-row{
