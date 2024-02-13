@@ -19,6 +19,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    window.addEventListener('resize', function () {
+        const ratio = window.devicePixelRatio;
+        canvas.width = window.innerWidth * ratio;
+        canvas.height = window.innerHeight * ratio;
+        ctx.scale(ratio, ratio);
+        redrawGrid();
+    });
+    
+    function redrawGrid() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+        const gridSize = 20;
+    
+        ctx.strokeStyle = '#ccc';
+        for (let i = 0; i < canvas.width; i += gridSize) {
+            for (let j = 0; j < canvas.height; j += gridSize) {
+                ctx.strokeRect(i, j, gridSize, gridSize);
+            }
+        }
+    }
+
     canvas.addEventListener('click', function (event) {
         ctx.fillStyle = selectedColor;
         const rect = canvas.getBoundingClientRect();

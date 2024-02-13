@@ -129,7 +129,6 @@ nav{
     @media (max-width: 840px) {
         .mobile-menu-burger {
             display: flex !important;
-            margin-left:32px;
         }
         .nav-links {
             position: absolute;
@@ -147,7 +146,7 @@ nav{
 
     @media (max-width: 350px){
         .logo{
-            font-size:20px;
+            font-size:16px;
         }
     }
 
