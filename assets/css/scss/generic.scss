@@ -15,14 +15,17 @@ main{
     box-sizing: border-box;
 
     &.game{
-        margin-top:200px;
-        padding:2em;
+        padding:unset;
         overflow: hidden;
         max-width:unset;
+        height:100%;
+        width:100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius:20px;
+
+
+
     }
 }
 
