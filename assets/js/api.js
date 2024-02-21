@@ -7,7 +7,6 @@ class Api{
      * Do an API call to the database to get the PixelMap for the board
      * 
      */
-
     async getPixelMap(){
         new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -26,5 +25,22 @@ class Api{
                 }
             }, 300);
           });
+    }
+
+    /**
+     * Resolves with the user info and puts the user info into local storage
+     * @param {string} username 
+     * @param {string} password 
+     *
+     */
+    async handleAuth(username, password){
+        new Promise((resolve,reject) => {
+            if (username == "user" && password == "password"){
+                localStorage.setItem("user", "USER INFO HERE");
+                resolve("USER INFO HERE");
+            }else{
+                reject("WRONG USER INFO");
+            }
+        });
     }
 }

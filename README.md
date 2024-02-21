@@ -31,7 +31,7 @@ Each point addresses authentication, database data, and websocket data respectiv
 - I have added a font from google fonts
 - I rearranged my repository so that it is easier to manage all my files.
 - Added a nav bar, with a mobile friendly collapsable hamburger menu
-- Added an image for the profile
+- Added an image for the profile (this is the only image)
 - For the front page I added in a super super dumbed down version of the drawing canvas to make sure the style works well on all devices and looks decent (I know javascript wasn't necessary but for styling purposes this was.)
 
 ## Mock picture
