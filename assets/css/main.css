@@ -401,6 +401,9 @@ footer .name {
     width: 250px;
     min-height: 70%;
   }
+  .modal .modal-body {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
