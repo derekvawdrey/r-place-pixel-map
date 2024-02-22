@@ -42,5 +42,9 @@
     .modal{
         width:250px;
         min-height:70%;
+
+        .modal-body{
+            flex-direction: column;
+        }
     }
   }
