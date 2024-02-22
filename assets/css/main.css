@@ -396,4 +396,11 @@ footer .name {
   z-index: 1;
 }
 
+@media (max-width: 450px) {
+  .modal {
+    width: 250px;
+    min-height: 70%;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */
