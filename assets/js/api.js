@@ -1,5 +1,3 @@
-import {Pixel} from "./models/pixel.js"
-
 class Api{
 
     /**
@@ -43,4 +41,5 @@ class Api{
             }
         });
     }
+
 }

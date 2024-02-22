@@ -1,6 +1,3 @@
-import {Pixel} from "./pixel.js"
-import {api} from "../api.js"
-
 class Board{
     width;
     height;
