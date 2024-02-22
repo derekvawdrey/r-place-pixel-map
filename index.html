@@ -28,15 +28,15 @@
         <nav>
             <a class="logo" href="index.html">Pixelated Place</a>
             <div class="nav-links-container">
-                <a class="profile-container" href="./profile_page.html">
+                <a class="profile-container" href="./profile_page.html" id="profileLink">
                     <div class="profile-circle">
                         <img src="./assets/images/profile.jpg">
                     </div>
                     <p class="profile-username">Profile name</p>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#" data-open-modal-id="loginModal">Login</a></li>
-                    <li><a href="#" data-open-modal-id="registerModal">Register</a></li>
+                    <li><a href="#" id="loginLink" data-open-modal-id="loginModal">Login</a></li>
+                    <li><a href="#" id="registerLink" data-open-modal-id="registerModal">Register</a></li>
                 </ul>
                 <div class="mobile-menu-burger">
                     <div class="line"></div>
@@ -67,10 +67,10 @@
                 <h1>Login</h1>
                 <form method="post" action="index.html">
                     <label for="name">Username</label>
-                    <input type="text" id="name" placeholder="Username" />
+                    <input type="text" id="login_name" placeholder="Username" />
                     <label for="password">Password</label>
-                    <input type="text" id="password" placeholder="Password" />
-                    <button type="submit">Login</button>
+                    <input type="text" id="login_password" placeholder="Password" />
+                    <button type="submit" id="login_submit">Login</button>
                   </form>
             </div>
         </section>
@@ -86,6 +86,7 @@
                   </form>
             </div>
         </section>
+        
         <div class="modal-overlay hidden" id="modal-overlay"></div>
 
     </main>
