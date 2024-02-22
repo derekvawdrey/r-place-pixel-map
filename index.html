@@ -36,7 +36,7 @@
                 </a>
                 <ul class="nav-links">
                     <li><a href="#" data-open-modal-id="loginModal">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    <li><a href="#" data-open-modal-id="registerModal">Register</a></li>
                 </ul>
                 <div class="mobile-menu-burger">
                     <div class="line"></div>
@@ -65,6 +65,18 @@
         <section class="modal hidden" id="loginModal">
             <div class="modal-body">
                 <h1>Login</h1>
+                <form method="post" action="index.html">
+                    <label for="name">Username</label>
+                    <input type="text" id="name" placeholder="Username" />
+                    <label for="password">Password</label>
+                    <input type="text" id="password" placeholder="Password" />
+                    <button type="submit">Login</button>
+                  </form>
+            </div>
+        </section>
+        <section class="modal hidden" id="registerModal">
+            <div class="modal-body">
+                <h1>Register</h1>
                 <form method="post" action="index.html">
                     <label for="name">Username</label>
                     <input type="text" id="name" placeholder="Username" />
