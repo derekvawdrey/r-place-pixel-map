@@ -37,3 +37,10 @@
     backdrop-filter: blur(3px);
     z-index: 1;
   }
+
+  @media (max-width: 450px) {
+    .modal{
+        width:250px;
+        min-height:70%;
+    }
+  }
