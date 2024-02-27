@@ -181,16 +181,28 @@ class pixelatedCanvas {
     }
 
     pinchZoom(touch1, touch2) {
-        if (this.pinchStart) {
+        if (!this.pinchStart) {
+            this.pinchStart = {
+                distance: this.calculateDistance(touch1, touch2)
+            };
+        } else {
             const currentDistance = this.calculateDistance(touch1, touch2);
+            const currentCenter = this.calculateCenter(touch1,touch2);
             const deltaDistance = currentDistance - this.pinchStart.distance;
             const scaleFactor = 1 + deltaDistance / this.app.renderer.width;
-
-            this.zoomIn(scaleFactor);
+    
+            const zoomPoint = new PIXI.Point(currentCenter.x,currentCenter.y);
+    
+            if (scaleFactor > 1) {
+                this.zoomIn(scaleFactor, zoomPoint);
+            } else {
+                this.zoomOut(1 / Math.abs(scaleFactor), zoomPoint);
+            }
+    
             this.pinchStart.distance = currentDistance;
         }
     }
-
+    
     calculateDistance(touch1, touch2) {
         const dx = touch1.clientX - touch2.clientX;
         const dy = touch1.clientY - touch2.clientY;
@@ -385,7 +397,7 @@ class pixelatedCanvas {
             x: startEvent.clientX,
             y: startEvent.clientY,
         };
-        startEvent.preventDefault();
+        startEvent.preventDefault(true);
     }
 
     /**
