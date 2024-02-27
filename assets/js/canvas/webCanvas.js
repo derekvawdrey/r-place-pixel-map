@@ -202,6 +202,7 @@ class pixelatedCanvas {
     }
 
     pinchZoom(touch1, touch2) {
+        this.tapTimer = 100;
         if (!this.pinchStart) {
             this.pinchStart = {
                 distance: this.calculateDistance(touch1, touch2)
