@@ -18,7 +18,7 @@ class Api{
                     resolve(JSON.parse(localStorage.getItem("map")))
                 }else{
                     let map = [];
-                    let pixelToMap = pixelsForNewMap();
+                    let pixelToMap = meatWizards();
                     for (let width = 0; width < 100; width += 1) {
                         map[width] = [];
                         for(let height = 0; height < 100; height += 1){
