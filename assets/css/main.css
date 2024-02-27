@@ -80,7 +80,6 @@ nav .nav-links-container .nav-links {
   list-style: none;
   padding-left: 0px;
   margin: 0px;
-  margin-right: 16px;
   transition: 0.5s height, 0.5s opacity;
   gap: 0.5em;
 }
@@ -106,7 +105,7 @@ nav .nav-links-container.open .nav-links {
   margin: 0px;
   padding-top: 14px;
   padding-bottom: 14px;
-  width: 100%;
+  min-width: 100%;
   border-radius: 16px;
   background-color: #fff;
   box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.15);
@@ -162,7 +161,7 @@ nav .mobile-menu-burger.open .line:nth-child(3) {
 body {
   background-color: #EEE;
   font-family: "Plus Jakarta Sans", Arial, sans-serif;
-  margin: 0px;
+  margin: 0;
 }
 
 main {
@@ -277,7 +276,7 @@ form input {
   padding: 1em;
   border-radius: 20px;
   appearance: none;
-  border: 0px;
+  border: 1px solid #AAA;
   font-size: 1em;
   color: black;
 }
