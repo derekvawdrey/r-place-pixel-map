@@ -10,6 +10,9 @@ class pixelatedCanvas {
     pixelBorder
     initalized
 
+    // THis is a tap timer to determine if we need to put a pixel or not
+    tapTimer
+
     /**
      * 
      * @param {Element} gameHolder 
@@ -20,7 +23,7 @@ class pixelatedCanvas {
         this.gameHolder = gameHolder;
         this.map = map;
         this.initalized = false;
-
+        this.tapTimer = 0;
         this.app = new PIXI.Application({
             background: '#EEE',
             resizeTo: window,
@@ -114,11 +117,20 @@ class pixelatedCanvas {
 
 
     getPixelXY(event) {
-        const mouseX = (event.data.global.x - this.drawnMap.x) / this.scale.y;
-        const mouseY = (event.data.global.y - this.drawnMap.y) / this.scale.x;
-        const gridX = Math.floor(mouseX / this.map.pixelWidth);
-        const gridY = Math.floor(mouseY / this.map.pixelHeight);
-        return { mouseX: mouseX, mouseY: mouseY, gridX: gridX, gridY: gridY }
+        console.log(event);
+        if (event instanceof Touch) {
+            const mouseX = (event.clientX - this.drawnMap.x) / this.scale.y;
+            const mouseY = (event.clientY - this.drawnMap.y) / this.scale.x;
+            const gridX = Math.floor(mouseX / this.map.pixelWidth);
+            const gridY = Math.floor(mouseY / this.map.pixelHeight);
+            return { mouseX: mouseX, mouseY: mouseY, gridX: gridX, gridY: gridY }
+        }else{
+            const mouseX = (event.data.global.x - this.drawnMap.x) / this.scale.y;
+            const mouseY = (event.data.global.y - this.drawnMap.y) / this.scale.x;
+            const gridX = Math.floor(mouseX / this.map.pixelWidth);
+            const gridY = Math.floor(mouseY / this.map.pixelHeight);
+            return { mouseX: mouseX, mouseY: mouseY, gridX: gridX, gridY: gridY }
+        }
     }
 
 
@@ -145,11 +157,11 @@ class pixelatedCanvas {
     initializeTouchEvents() {
         this.app.view.addEventListener("touchstart", (event) => this.handleTouchStart(event));
         this.app.view.addEventListener("touchmove", (event) => this.handleTouchMove(event));
-        this.app.view.addEventListener("touchend", () => this.handleTouchEnd());
-        this.app.view.addEventListener("tap", (event) => this.updatePixelDrawer(event));
+        this.app.view.addEventListener("touchend", (event) => this.handleTouchEnd(event));
     }
 
     handleTouchStart(event) {
+        this.tapTimer = 0;
         if (event.touches.length === 1) {
             // Single touch, start panning
             this.startPan(event.touches[0]);
@@ -160,6 +172,7 @@ class pixelatedCanvas {
     }
 
     handleTouchMove(event) {
+        this.tapTimer += 1;
         if (event.touches.length === 1) {
             // Single touch, pan the canvas
             this.pan(event.touches[0]);
@@ -169,7 +182,14 @@ class pixelatedCanvas {
         }
     }
 
-    handleTouchEnd() {
+    handleTouchEnd(event) {
+        if (this.tapTimer < 5) {
+            // Draw pixel
+            this.handleClickEvent(event);
+            console.log("Tapping on mobile, draw pixel");
+        }
+        this.tapTimer = 0;
+
         // Stop panning when touch ends
         this.stopPan();
     }
@@ -188,22 +208,22 @@ class pixelatedCanvas {
             };
         } else {
             const currentDistance = this.calculateDistance(touch1, touch2);
-            const currentCenter = this.calculateCenter(touch1,touch2);
+            const currentCenter = this.calculateCenter(touch1, touch2);
             const deltaDistance = currentDistance - this.pinchStart.distance;
             const scaleFactor = 1 + deltaDistance / this.app.renderer.width;
-    
-            const zoomPoint = new PIXI.Point(currentCenter.x,currentCenter.y);
-    
+
+            const zoomPoint = new PIXI.Point(currentCenter.x, currentCenter.y);
+
             if (scaleFactor > 1) {
                 this.zoomIn(scaleFactor, zoomPoint);
             } else {
                 this.zoomOut(1 / Math.abs(scaleFactor), zoomPoint);
             }
-    
+
             this.pinchStart.distance = currentDistance;
         }
     }
-    
+
     calculateDistance(touch1, touch2) {
         const dx = touch1.clientX - touch2.clientX;
         const dy = touch1.clientY - touch2.clientY;
@@ -241,21 +261,31 @@ class pixelatedCanvas {
     }
 
     /**
-     * Draws a pixel on click
-     * @param {Click} event 
+     * Draws a pixel on click or touchend
+     * @param {Event} event 
      */
     handleClickEvent(event) {
-        if (event.button === 0) {
-            let mousePositions = this.getPixelXY(event);
-            let x = mousePositions.gridX;
-            let y = mousePositions.gridY;
-            let newPixel = new Pixel(x, y, 0, 0, 0);
-            this.map.map[x][y] = newPixel;
-            this.drawPixel(newPixel);
+        let mousePositions;
 
-            Api.sendPixelToServer(newPixel, this.map.mapId);
+        if (event.type === 'click' && event.button === 0) {
+            mousePositions = this.getPixelXY(event);
+        } else if (event.type === 'touchend') {
+            event.preventDefault();
+            const touch = event.changedTouches[0];
+            mousePositions = this.getPixelXY(touch);
+        } else {
+            return;
         }
+
+        let x = mousePositions.gridX;
+        let y = mousePositions.gridY;
+        let newPixel = new Pixel(x, y, 0, 0, 0);
+        this.map.map[x][y] = newPixel;
+        this.drawPixel(newPixel);
+
+        Api.sendPixelToServer(newPixel, this.map.mapId);
     }
+
 
     /**
      * Updates the position and drawing of the pixelBorder object
