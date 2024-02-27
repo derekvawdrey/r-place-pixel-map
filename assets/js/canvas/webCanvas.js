@@ -286,7 +286,10 @@ class pixelatedCanvas {
 
         let x = mousePositions.gridX;
         let y = mousePositions.gridY;
-        let newPixel = new Pixel(x, y, 0, 0, 0);
+
+        const color = hexToRgb(selectedColor);
+
+        let newPixel = new Pixel(x, y, color.r, color.g, color.b);
         this.map.map[x][y] = newPixel;
         this.drawPixel(newPixel);
 
@@ -300,9 +303,9 @@ class pixelatedCanvas {
      */
     updatePixelDrawer(event) {
         let mousePositions = this.getPixelXY(event);
-
+        const color = hexToRgb(selectedColor);
         this.pixelBorder.clear();
-        this.pixelBorder.lineStyle(2, 0x000000);
+        this.pixelBorder.lineStyle(2, selectedColor);
         this.pixelBorder.drawRect(
             mousePositions.gridX * this.map.pixelWidth,
             mousePositions.gridY * this.map.pixelHeight,
