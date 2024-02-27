@@ -185,8 +185,16 @@ main.game {
   align-items: center;
 }
 
+.error {
+  color: #B30202;
+}
+
 .container-row {
   display: flex;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .container {
@@ -377,10 +385,6 @@ footer .name {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.hidden {
-  display: none;
 }
 
 .modal-overlay {
