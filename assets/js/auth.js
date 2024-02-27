@@ -68,7 +68,10 @@ function logout(){
 }
 
 function isLoggedIn(){
-    let loggedIn = getUserToken().length>0 ? true : false;
-    if(loggedIn)console.log("User is - ", getUserToken());
+    let loggedIn = false;
+    if(getUserToken()){
+        loggedIn = getUserToken().length>0 ? true : false;
+        if(loggedIn)console.log("User is - ", getUserToken());
+    }
     return loggedIn;
 }
