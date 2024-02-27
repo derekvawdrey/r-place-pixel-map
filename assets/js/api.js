@@ -5,8 +5,8 @@ class Api{
      * Do an API call to the database to get the PixelMap for the board
      * 
      */
-    async getPixelMap(){
-        new Promise((resolve, reject) => {
+    static async getPixelMap(){
+        return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if(localStorage.getItem("map") !== null){
                     resolve(localStorage.getItem("map"))
@@ -31,13 +31,14 @@ class Api{
      * @param {string} password 
      *
      */
-    async handleAuth(username, password){
-        new Promise((resolve,reject) => {
+    static async handleAuth(username, password){
+        console.log("Authenticating: ", username, " ", password);
+        return new Promise((resolve,reject) => {
             if (username == "user" && password == "password"){
-                localStorage.setItem("user", "USER INFO HERE");
-                resolve("USER INFO HERE");
+                resolve("Usertokenhere");
             }else{
-                reject("WRONG USER INFO");
+                
+                reject("Incorrect username and password combination... (Try username:user and password:password)");
             }
         });
     }

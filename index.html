@@ -16,11 +16,11 @@
     <script src="./assets/js/models/pixel.js"></script>
     <script src="./assets/js/models/user.js"></script>
 
-
+    <script src="./assets/js/localStorage.js"></script>
     <script src="./assets/js/modal.js"></script>
     <script src="./assets/js/api.js"></script>
     <script src="./assets/js/nav.js"></script>
-    <script src="./assets/js/login.js"></script>
+    <script src="./assets/js/auth.js"></script>
 </head>
 
 <body>
@@ -64,24 +64,30 @@
 
         <section class="modal hidden" id="loginModal">
             <div class="modal-body">
-                <h1>Login</h1>
-                <form method="post" action="index.html">
+                <div style="width:50%;">
+                    <h1>Login</h1>
+                </div>
+                <div style="width:50%;">
+                <form method="post" action="javascript:login()">
                     <label for="name">Username</label>
-                    <input type="text" id="login_name" placeholder="Username" />
+                    <input type="text" id="login-name" placeholder="Username" />
                     <label for="password">Password</label>
-                    <input type="text" id="login_password" placeholder="Password" />
+                    <input type="text" id="login-password" placeholder="Password" />
+                    <span class="error" id="login-error"></span>
                     <button type="submit" id="login_submit">Login</button>
                   </form>
+                </div>
             </div>
         </section>
         <section class="modal hidden" id="registerModal">
             <div class="modal-body">
                 <h1>Register</h1>
-                <form method="post" action="index.html">
+                <form method="post" action="javascript:register()">
                     <label for="name">Username</label>
-                    <input type="text" id="name" placeholder="Username" />
+                    <input type="text" id="register-name" placeholder="Username" />
                     <label for="password">Password</label>
-                    <input type="text" id="password" placeholder="Password" />
+                    <input type="text" id="register-password" placeholder="Password" />
+                    <span class="error" id="register-error"></span>
                     <button type="submit">Register</button>
                   </form>
             </div>
