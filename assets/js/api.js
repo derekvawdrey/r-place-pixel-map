@@ -12,6 +12,7 @@ class Api{
      * 
      */
     static async getPixelMap(mapId){
+        console.log("API CALL",mapId);
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if(localStorage.getItem("map") !== null){
@@ -19,12 +20,18 @@ class Api{
                 }else{
                     let map = [];
                     // Temporary map stored on the 'server'
-                    let pixelToMap = meatWizards();
-                    for (let width = 0; width < 100; width += 1) {
-                        map[width] = [];
-                        for(let height = 0; height < 100; height += 1){
+                    // This part will be done in the backend:
+                    let pixelToMap = this.getMapByMapId(mapId);
+                    console.log(pixelToMap)
 
-                            let newPixel = pixelToMap[width+height*100];
+                    let tempWidth = pixelToMap[0].length;
+                    let tempHeight = pixelToMap.length;
+                    
+                    for (let width = 0; width < tempWidth; width += 1) {
+                        map[width] = [];
+                        for(let height = 0; height < tempHeight; height += 1){
+
+                            let newPixel = pixelToMap[width][height];
 
                             map[width][height] = new Pixel(width,height,newPixel.r,newPixel.g,newPixel.b)
                         }
@@ -36,10 +43,23 @@ class Api{
             }, 300);
           });
     }
+    
+    static getMapByMapId(mapId){
+        if(mapId == "largeMeatWizards"){
+            let tempMap = largeMeatWizards();
+            return convert1Dto2Darray(tempMap,300,300);
+        }else if(mapId == "smallMeatWizards"){
+            let tempMap = meatWizards();
+            return convert1Dto2Darray(tempMap,100,100);
+        }else{
+            let tempMap = pixelsForNewMap();
+            return convert1Dto2Darray(tempMap,100,100);
+        }
+    }
 
     static async sendPixelToServer(pixel, mapId){
-        this.getPixelMap().then((map)=>{
-            if(pixel.x <= 99 && pixel.y <= 99){
+        this.getPixelMap(mapId).then((map)=>{
+            if(pixel.x < map[0].length && pixel.y <= map.length){
                 map[pixel.x][pixel.y] = pixel;
                 localStorage.setItem("map-"+mapId, JSON.stringify(map));
                 console.log(pixel);

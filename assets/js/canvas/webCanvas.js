@@ -8,6 +8,7 @@ class pixelatedCanvas{
     map
     drawnMap
     pixelBorder
+    initalized
 
     /**
      * 
@@ -18,10 +19,14 @@ class pixelatedCanvas{
     constructor(gameHolder, map){
         this.gameHolder = gameHolder;
         this.map = map;
+        this.initalized = false;
+
         this.app = new PIXI.Application({
             background: '#1099bb',
             resizeTo: window,
         });
+        
+
 
         
         
@@ -59,6 +64,7 @@ class pixelatedCanvas{
         this.drawMapToCanvas();
         this.initializeZoomEvents();
         this.initalizePanningEvents();
+        this.initalized = true;
 
     }
 
@@ -144,7 +150,7 @@ class pixelatedCanvas{
      */
     initalizePanningEvents(){
         this.app.view.addEventListener("mousedown", (event) => {
-            if (event.button === 1 || !this.isClickInsideDrawnMap(event)) { 
+            if (event.button === 1) { 
                 this.startPan(event);
             }
         });
@@ -216,7 +222,6 @@ class pixelatedCanvas{
     }
 
 
-
     updatePixelDrawer(event) {
         const mouseX = (event.data.global.x - this.drawnMap.x) / this.scale.y;
         const mouseY = (event.data.global.y - this.drawnMap.y) / this.scale.x;
@@ -227,7 +232,7 @@ class pixelatedCanvas{
         console.log("Grid Coordinates:", gridX, gridY);
 
         this.pixelBorder.clear();
-        this.pixelBorder.lineStyle(1, 0x000000);
+        this.pixelBorder.lineStyle(2, 0x000000);
         this.pixelBorder.drawRect(
             gridX * this.map.pixelWidth,
             gridY * this.map.pixelHeight,
@@ -239,19 +244,6 @@ class pixelatedCanvas{
 
     removePixelDrawer(event){
         this.pixelBorder.clear();
-    }
-
-    isClickInsideDrawnMap(event) {
-        const clickX = event.clientX;
-        const clickY = event.clientY;
-        const drawnMapRect = this.drawnMap.getBoundingClientRect();
-    
-        return (
-            clickX >= drawnMapRect.left &&
-            clickX <= drawnMapRect.right &&
-            clickY >= drawnMapRect.top &&
-            clickY <= drawnMapRect.bottom
-        );
     }
         
 

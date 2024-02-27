@@ -13,18 +13,26 @@ class PixelatedMap{
     pixelHeight;
     pixelWidth;
 
-    constructor(width,height,pixelHeight,pixelWidth,map,mapId){
-        this.width = width;
-        this.height = height;
-        this.map = map;
+    constructor(pixelHeight,pixelWidth,mapId){
+        this.width = 0;
+        this.height = 0;
+        this.map = [];
         this.mapId = mapId;
-
         this.pixelHeight = pixelHeight;
         this.pixelWidth = pixelWidth;
+        console.log("Map constructor created");
     }
 
-    initMap(){
-        
+    async loadMap() {
+        console.log("Attempting to load Map - ", this.mapId)
+        try {
+            this.map = await Api.getPixelMap(this.mapId);
+            this.width = this.map[0].length;
+            this.height = this.map.length;
+            console.log("Map loaded successfully:", this.map);
+        } catch (error) {
+            console.error("Error loading map:", error);
+        }
     }
 
     /**
@@ -34,10 +42,6 @@ class PixelatedMap{
      */
     getPixelAtCoords(x,y){
         
-    }
-
-    async loadMap(){
-
     }
 
     async updateMap(){
