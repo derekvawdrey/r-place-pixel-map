@@ -146,6 +146,7 @@ class pixelatedCanvas {
         this.app.view.addEventListener("touchstart", (event) => this.handleTouchStart(event));
         this.app.view.addEventListener("touchmove", (event) => this.handleTouchMove(event));
         this.app.view.addEventListener("touchend", () => this.handleTouchEnd());
+        this.app.view.addEventListener("tap", (event) => this.updatePixelDrawer(event));
     }
 
     handleTouchStart(event) {
