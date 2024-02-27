@@ -69,11 +69,6 @@ class pixelatedCanvas {
 
     }
 
-    initializeDrawEvents(){
-        this.drawnMap.on("pointerout", (event) => this.removePixelDrawer(event));
-        this.drawnMap.on("mousemove", (event) => this.updatePixelDrawer(event));
-        this.drawnMap.on("click", (event) => this.handleClickEvent(event));
-    }
 
     /**
      * Draws the map to the canvas
@@ -94,76 +89,58 @@ class pixelatedCanvas {
         }
     }
 
+
     /**
-     * Zoom in by a factor
-     * @param {number} factor - The zoom factor
+     * 
+     * 
      */
-    zoomIn(factor) {
-        this.zoom.x *= factor;
-        this.zoom.y *= factor;
-        this.updateZoom();
+    fetchMapUpdates() {
+
     }
 
     /**
-     * Zoom out by a factor
-     * @param {number} factor - The zoom factor
+     * 
+     * @param {Pixel} pixel
+     *  
      */
-    zoomOut(factor) {
-        this.zoom.x /= factor;
-        this.zoom.y /= factor;
-        this.updateZoom();
+    drawPixel(pixel) {
+        let pixelSizeX = this.map.pixelWidth;
+        let pixelSizeY = this.map.pixelHeight;
+        this.drawnMap.beginFill(PIXI.utils.rgb2hex([pixel.r / 255, pixel.g / 255, pixel.b / 255]));
+        this.drawnMap.drawRect(pixel.x * pixelSizeX, pixel.y * pixelSizeY, pixelSizeX, pixelSizeY);
+        this.drawnMap.endFill();
     }
+
+
+
+    getPixelXY(event) {
+        const mouseX = (event.data.global.x - this.drawnMap.x) / this.scale.y;
+        const mouseY = (event.data.global.y - this.drawnMap.y) / this.scale.x;
+        const gridX = Math.floor(mouseX / this.map.pixelWidth);
+        const gridY = Math.floor(mouseY / this.map.pixelHeight);
+        return { mouseX: mouseX, mouseY: mouseY, gridX: gridX, gridY: gridY }
+    }
+
+
+
+
 
     /**
-     * Update the zoom properties and redraw the map
+     * 
+     * 
+     * EVENTS!!!!!
+     * 
+     * 
      */
-    updateZoom() {
-        this.scale.x = this.zoom.x;
-        this.scale.y = this.zoom.y;
-
-        this.drawnMap.scale.set(this.scale.x, this.scale.y);
-        this.drawMapToCanvas();
-    }
 
     /**
-     * Handle mouse wheel event for zooming
-     * @param {WheelEvent} event - The wheel event
+     * 
+     * MOBILE EVENTS
+     * 
+     * 
      */
-    handleZoom(event) {
-        const zoomFactor = 1.1;
-        if (event.deltaY < 0) {
-            // Zoom in when scrolling up
-            this.zoomIn(zoomFactor);
-        } else {
-            // Zoom out when scrolling down
-            this.zoomOut(zoomFactor);
-        }
 
-        event.preventDefault(true);
-    }
 
-    /**
-     * Initialize event listeners for zooming
-     */
-    initializeZoomEvents() {
-        this.app.view.addEventListener("wheel", (event) => this.handleZoom(event));
-    }
-    /**
-     * Initalize Panning events
-     */
-    initalizePanningEvents() {
-        this.app.view.addEventListener("mousedown", (event) => {
-            if (event.button === 1) {
-                this.startPan(event);
-            }
-        });
-
-        this.app.view.addEventListener("mousemove", (event) => {
-            if (event.buttons === 4) {
-                this.pan(event);
-            }
-        });
-    }
 
     initializeTouchEvents() {
         this.app.view.addEventListener("touchstart", (event) => this.handleTouchStart(event));
@@ -220,75 +197,40 @@ class pixelatedCanvas {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
+    /**
+     * Calculates the center of where the pinch occured for zooming purposes
+     * @param {*} touch1 
+     * @param {*} touch2 
+     * @returns 
+     */
     calculateCenter(touch1, touch2) {
         const centerX = (touch1.clientX + touch2.clientX) / 2;
         const centerY = (touch1.clientY + touch2.clientY) / 2;
         return { x: centerX, y: centerY };
     }
 
-    /**
-     * Start panning when the middle mouse button is clicked
-     * @param {MouseEvent} event - The mouse event
-     */
-    startPan(event) {
-        this.panStart = {
-            x: event.clientX,
-            y: event.clientY
-        };
-        if (event.button === 1) event.preventDefault();
-    }
-
-    /**
-     * Pan the canvas based on mouse movement
-     * @param {MouseEvent} event - The mouse event
-     */
-    pan(event) {
-        if (this.panStart) {
-            const deltaX = event.clientX - this.panStart.x;
-            const deltaY = event.clientY - this.panStart.y;
-
-            this.camPos.x += deltaX;
-            this.camPos.y += deltaY;
-
-            this.drawnMap.x = (this.app.renderer.width - this.map.width * this.map.pixelWidth) / 2 + this.camPos.x;
-            this.drawnMap.y = (this.app.renderer.height - this.map.height * this.map.pixelHeight) / 2 + this.camPos.y;
-
-            this.panStart = {
-                x: event.clientX,
-                y: event.clientY
-            };
-        }
-    }
-
-    /**
-     * Stop panning when the middle mouse button is released
-     */
-    stopPan() {
-        this.panStart = null;
-    }
-
 
     /**
      * 
      * 
+     * CLICKING EVENTS
+     * 
+     * 
      */
-    fetchMapUpdates() {
 
+    /**
+     * Initializes all the events for drawing
+     */
+    initializeDrawEvents() {
+        this.drawnMap.on("pointerout", (event) => this.removePixelDrawer(event));
+        this.drawnMap.on("mousemove", (event) => this.updatePixelDrawer(event));
+        this.drawnMap.on("click", (event) => this.handleClickEvent(event));
     }
 
     /**
-     * 
-     * @param {Pixel} pixel
-     *  
+     * Draws a pixel on click
+     * @param {Click} event 
      */
-    drawPixel(pixel) {
-        let pixelSizeX = this.map.pixelWidth;
-        let pixelSizeY = this.map.pixelHeight;
-        this.drawnMap.beginFill(PIXI.utils.rgb2hex([pixel.r / 255, pixel.g / 255, pixel.b / 255]));
-        this.drawnMap.drawRect(pixel.x * pixelSizeX, pixel.y * pixelSizeY, pixelSizeX, pixelSizeY);
-        this.drawnMap.endFill();
-    }
-
     handleClickEvent(event) {
         if (event.button === 0) {
             let mousePositions = this.getPixelXY(event);
@@ -302,12 +244,12 @@ class pixelatedCanvas {
         }
     }
 
-
+    /**
+     * Updates the position and drawing of the pixelBorder object
+     * @param {MouseMove} event 
+     */
     updatePixelDrawer(event) {
         let mousePositions = this.getPixelXY(event);
-
-        console.log("Relative Coordinates:", mousePositions.mouseX, mousePositions.mouseY);
-        console.log("Grid Coordinates:", mousePositions.gridX, mousePositions.gridY);
 
         this.pixelBorder.clear();
         this.pixelBorder.lineStyle(2, 0x000000);
@@ -320,17 +262,156 @@ class pixelatedCanvas {
         this.drawnMap.addChild(this.pixelBorder);
     }
 
-    getPixelXY(event) {
-        const mouseX = (event.data.global.x - this.drawnMap.x) / this.scale.y;
-        const mouseY = (event.data.global.y - this.drawnMap.y) / this.scale.x;
-        const gridX = Math.floor(mouseX / this.map.pixelWidth);
-        const gridY = Math.floor(mouseY / this.map.pixelHeight);
-        return { mouseX: mouseX, mouseY: mouseY, gridX: gridX, gridY: gridY }
-    }
-
+    /**
+     * Removes the pxel drawing borad
+     * @param {PointerOut} event 
+     */
     removePixelDrawer(event) {
         this.pixelBorder.clear();
     }
 
+
+    /**
+     * 
+     * 
+     * ZOOMING EVENTS
+     * 
+     */
+
+    /**
+     * Initialize event listeners for zooming
+     */
+    initializeZoomEvents() {
+        this.app.view.addEventListener("wheel", (event) => this.handleZoom(event));
+    }
+
+
+    /**
+     * Zoom in by a factor around a specified point
+     * @param {number} factor - The zoom factor
+     * @param {PIXI.Point} zoomPoint - The point to zoom in on
+     */
+    zoomIn(factor, zoomPoint) {
+        this.zoom.x *= factor;
+        this.zoom.y *= factor;
+        this.updateZoom(zoomPoint);
+    }
+
+    /**
+     * Zoom out by a factor around a specified point
+     * @param {number} factor - The zoom factor
+     * @param {PIXI.Point} zoomPoint - The point to zoom out from
+     */
+    zoomOut(factor, zoomPoint) {
+        this.zoom.x /= factor;
+        this.zoom.y /= factor;
+        this.updateZoom(zoomPoint);
+    }
+
+    /**
+     * Update the zoom properties and redraw the map around a specified point
+     * @param {PIXI.Point} zoomPoint - The point to zoom around
+     */
+    updateZoom(zoomPoint) {
+        this.scale.x = this.zoom.x;
+        this.scale.y = this.zoom.y;
+        const currentPosition = this.drawnMap.getGlobalPosition();
+        const currentScale = this.drawnMap.scale;
+
+        const tx = (zoomPoint.x - currentPosition.x) / currentScale.x;
+        const ty = (zoomPoint.y - currentPosition.y) / currentScale.y;
+        this.drawnMap.setTransform(-tx * this.scale.x + zoomPoint.x, -ty * this.scale.y + zoomPoint.y, this.scale.x, this.scale.y);
+
+        this.drawMapToCanvas();
+    }
+
+
+    /**
+     * Handle mouse wheel event for zooming to the mouse position
+     * @param {WheelEvent} event - The wheel event
+     */
+    handleZoom(event) {
+        const zoomFactor = 1.1;
+        const zoomPoint = new PIXI.Point(event.clientX, event.clientY);
+
+        if (event.deltaY < 0) {
+            // Zoom in when scrolling up
+            this.zoomIn(zoomFactor, zoomPoint);
+        } else {
+            // Zoom out when scrolling down
+            this.zoomOut(zoomFactor, zoomPoint);
+        }
+
+        event.preventDefault(true);
+    }
+
+
+
+
+    /**
+     * 
+     * PANNING EVENTS
+     * 
+     * 
+     */
+
+
+
+    /**
+     * Initalize Panning events
+     */
+    initalizePanningEvents() {
+        this.app.view.addEventListener("mousedown", (event) => {
+            if (event.button === 1) {
+                this.startPan(event);
+            }
+        });
+
+        this.app.view.addEventListener("mousemove", (event) => {
+            if (event.buttons === 4) {
+                this.pan(event);
+            }
+        });
+    }
+
+
+    /**
+     * Start panning the canvas
+     * @param {Object} startEvent - The starting event for panning
+     */
+    startPan(startEvent) {
+        this.panning = true;
+        this.panStart = {
+            x: startEvent.clientX,
+            y: startEvent.clientY,
+        };
+        startEvent.preventDefault();
+    }
+
+    /**
+     * Stop panning the canvas
+     */
+    stopPan() {
+        this.panning = false;
+    }
+
+    /**
+     * Update the canvas position during panning
+     * @param {Object} panEvent - The current panning event
+     */
+    pan(panEvent) {
+        if (this.panning) {
+            const deltaX = panEvent.clientX - this.panStart.x;
+            const deltaY = panEvent.clientY - this.panStart.y;
+
+            this.drawnMap.x += deltaX;
+            this.drawnMap.y += deltaY;
+
+            this.panStart = {
+                x: panEvent.clientX,
+                y: panEvent.clientY,
+            };
+        }
+    }
 
 }
