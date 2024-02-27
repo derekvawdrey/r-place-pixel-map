@@ -15,8 +15,8 @@ class Api{
         console.log("API CALL",mapId);
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if(localStorage.getItem("map") !== null){
-                    resolve(JSON.parse(localStorage.getItem("map")))
+                if(localStorage.getItem("map-"+mapId) !== null){
+                    resolve(JSON.parse(localStorage.getItem("map-"+mapId)))
                 }else{
                     let map = [];
                     // Temporary map stored on the 'server'

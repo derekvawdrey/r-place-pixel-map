@@ -22,7 +22,7 @@ class pixelatedCanvas{
         this.initalized = false;
 
         this.app = new PIXI.Application({
-            background: '#1099bb',
+            background: '#EEE',
             resizeTo: window,
         });
         
@@ -45,6 +45,7 @@ class pixelatedCanvas{
         this.drawnMap.interactive = true;
         this.drawnMap.on("pointerout", (event) => this.removePixelDrawer(event));
         this.drawnMap.on("mousemove", (event) => this.updatePixelDrawer(event));
+        this.drawnMap.on("click", (event) => this.handleClickEvent(event));
         this.drawnMap.x = (this.app.renderer.width - this.map.width * this.map.pixelWidth) / 2;
         this.drawnMap.y = (this.app.renderer.height - this.map.height * this.map.pixelHeight) / 2;
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -78,15 +79,11 @@ class pixelatedCanvas{
             return;
         }
 
-        let pixelSizeX = this.map.pixelWidth;
-        let pixelSizeY = this.map.pixelHeight;
 
         for (let col = 0; col < this.map.width; col+=1){
             for(let row = 0; row < this.map.height; row+=1){
                 let pixel = this.map.map[col][row];
-                this.drawnMap.beginFill(PIXI.utils.rgb2hex([pixel.r / 255, pixel.g / 255, pixel.b / 255]));
-                this.drawnMap.drawRect(pixel.x * pixelSizeX, pixel.y * pixelSizeY, pixelSizeX, pixelSizeY);
-                this.drawnMap.endFill();
+                this.drawPixel(pixel);
             }
         }
     }
@@ -218,28 +215,50 @@ class pixelatedCanvas{
      *  
      */
     drawPixel(pixel){
-
+        let pixelSizeX = this.map.pixelWidth;
+        let pixelSizeY = this.map.pixelHeight;
+        this.drawnMap.beginFill(PIXI.utils.rgb2hex([pixel.r / 255, pixel.g / 255, pixel.b / 255]));
+        this.drawnMap.drawRect(pixel.x * pixelSizeX, pixel.y * pixelSizeY, pixelSizeX, pixelSizeY);
+        this.drawnMap.endFill();
     }
 
+    handleClickEvent(event) {
+        if (event.button === 0) {
+            let mousePositions = this.getPixelXY(event);
+            let x = mousePositions.gridX;
+            let y = mousePositions.gridY;
+            let newPixel = new Pixel(x, y, 0, 0, 0);
+            this.map.map[x][y] = newPixel;
+            this.drawPixel(newPixel);
+    
+            Api.sendPixelToServer(newPixel, this.map.mapId);
+        }
+    }
+    
 
     updatePixelDrawer(event) {
-        const mouseX = (event.data.global.x - this.drawnMap.x) / this.scale.y;
-        const mouseY = (event.data.global.y - this.drawnMap.y) / this.scale.x;
-        const gridX = Math.floor(mouseX / this.map.pixelWidth);
-        const gridY = Math.floor(mouseY / this.map.pixelHeight);
+        let mousePositions = this.getPixelXY(event);
     
-        console.log("Relative Coordinates:", mouseX, mouseY);
-        console.log("Grid Coordinates:", gridX, gridY);
+        console.log("Relative Coordinates:", mousePositions.mouseX, mousePositions.mouseY);
+        console.log("Grid Coordinates:", mousePositions.gridX, mousePositions.gridY);
 
         this.pixelBorder.clear();
         this.pixelBorder.lineStyle(2, 0x000000);
         this.pixelBorder.drawRect(
-            gridX * this.map.pixelWidth,
-            gridY * this.map.pixelHeight,
+            mousePositions.gridX * this.map.pixelWidth,
+            mousePositions.gridY * this.map.pixelHeight,
             this.map.pixelWidth,
             this.map.pixelHeight
         );
         this.drawnMap.addChild(this.pixelBorder);
+    }
+
+    getPixelXY(event){
+        const mouseX = (event.data.global.x - this.drawnMap.x) / this.scale.y;
+        const mouseY = (event.data.global.y - this.drawnMap.y) / this.scale.x;
+        const gridX = Math.floor(mouseX / this.map.pixelWidth);
+        const gridY = Math.floor(mouseY / this.map.pixelHeight);
+        return {mouseX: mouseX, mouseY: mouseY, gridX: gridX, gridY: gridY}
     }
 
     removePixelDrawer(event){
