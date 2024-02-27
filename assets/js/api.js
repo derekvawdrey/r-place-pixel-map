@@ -11,13 +11,14 @@ class Api{
      * Do an API call to the database to get the PixelMap for the board
      * 
      */
-    static async getPixelMap(){
+    static async getPixelMap(mapId){
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if(localStorage.getItem("map") !== null){
                     resolve(JSON.parse(localStorage.getItem("map")))
                 }else{
                     let map = [];
+                    // Temporary map stored on the 'server'
                     let pixelToMap = meatWizards();
                     for (let width = 0; width < 100; width += 1) {
                         map[width] = [];
@@ -29,18 +30,18 @@ class Api{
                         }
                     }
 
-                    localStorage.setItem("map", JSON.stringify(map));
+                    localStorage.setItem("map-"+mapId, JSON.stringify(map));
                     resolve(map);
                 }
             }, 300);
           });
     }
 
-    static async sendPixelToServer(pixel){
+    static async sendPixelToServer(pixel, mapId){
         this.getPixelMap().then((map)=>{
             if(pixel.x <= 99 && pixel.y <= 99){
                 map[pixel.x][pixel.y] = pixel;
-                localStorage.setItem("map", JSON.stringify(map));
+                localStorage.setItem("map-"+mapId, JSON.stringify(map));
                 console.log(pixel);
             }
         })

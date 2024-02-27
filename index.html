@@ -11,16 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
     <link href="./assets/css/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
 
-    <script src="./assets/js/models/board.js"></script>
-    <script src="./assets/js/models/pixel.js"></script>
-    <script src="./assets/js/models/user.js"></script>
-    <script src="./assets/js/storedPixelMap.js"></script>
-    <script src="./assets/js/localStorage.js"></script>
-    <script src="./assets/js/modal.js"></script>
-    <script src="./assets/js/api.js"></script>
-    <script src="./assets/js/nav.js"></script>
-    <script src="./assets/js/auth.js"></script>
 </head>
 
 <body>
@@ -46,8 +38,8 @@
                 </menu>
         </nav>
     </header>
-    <main class="game">
-        <canvas id="pixelCanvas"></canvas>
+    <main class="game" id="pixelCanvasAppend">
+        <!-- Replacing this with a javascript library <canvas id="pixelCanvas"></canvas> -->
         <div class="game-bar">
             <div class="color color-ffb3ba"></div>
             <div class="color color-ffdfba"></div>
@@ -100,7 +92,20 @@
         <span class="name">Derek Vawdrey - </span>
         <a class="" href="https://github.com/derekvawdrey/startup">GitHub</a>
     </footer>
-    <script src="./assets/js/canvas.js"></script>
+
+    
+    <script src="./assets/js/models/map.js"></script>
+    <script src="./assets/js/models/pixel.js"></script>
+    <script src="./assets/js/models/user.js"></script>
+
+    <script src="./assets/js/canvas/webCanvas.js"></script>
+    <script src="./assets/js/storedPixelMap.js"></script>
+    <script src="./assets/js/localStorage.js"></script>
+    <script src="./assets/js/modal.js"></script>
+    <script src="./assets/js/api.js"></script>
+    <script src="./assets/js/nav.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 
 </html>

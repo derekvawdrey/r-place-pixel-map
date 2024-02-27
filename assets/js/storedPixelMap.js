@@ -1,3 +1,14 @@
+function convert1Dto2Darray(array, width, height){
+    let newArray = []
+    for(let col = 0; col < width; col+=1){
+        newArray[col] = [];
+        for(let row = 0; row < height; row += 1){
+            newArray[col][row] = array[col + row*width]
+        }
+    }
+    return newArray;
+}
+
 function pixelsForNewMap() { 
     return [
         {

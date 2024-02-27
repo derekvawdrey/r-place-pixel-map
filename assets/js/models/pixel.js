@@ -4,6 +4,7 @@ class Pixel{
     r;
     g;
     b;
+
     constructor(x,y,r,g,b){
         this.x = x;
         this.y = y;
