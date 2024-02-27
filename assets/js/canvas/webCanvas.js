@@ -31,8 +31,6 @@ class pixelatedCanvas {
 
 
 
-
-
         if (this.gameHolder == null) {
             console.log("ERROR: webgl cannot load");
             return;
@@ -98,7 +96,7 @@ class pixelatedCanvas {
      * 
      */
     fetchMapUpdates() {
-
+        
     }
 
     /**
@@ -107,17 +105,14 @@ class pixelatedCanvas {
      *  
      */
     drawPixel(pixel) {
-        let pixelSizeX = this.map.pixelWidth;
-        let pixelSizeY = this.map.pixelHeight;
         this.drawnMap.beginFill(PIXI.utils.rgb2hex([pixel.r / 255, pixel.g / 255, pixel.b / 255]));
-        this.drawnMap.drawRect(pixel.x * pixelSizeX, pixel.y * pixelSizeY, pixelSizeX, pixelSizeY);
+        this.drawnMap.drawRect(pixel.x * this.map.pixelWidth, pixel.y * this.map.pixelHeight, this.map.pixelWidth, this.map.pixelHeight);
         this.drawnMap.endFill();
     }
 
 
 
     getPixelXY(event) {
-        console.log(event);
         if (event instanceof Touch) {
             const mouseX = (event.clientX - this.drawnMap.x) / this.scale.y;
             const mouseY = (event.clientY - this.drawnMap.y) / this.scale.x;
@@ -199,7 +194,7 @@ class pixelatedCanvas {
             distance: this.calculateDistance(touch1, touch2),
             center: this.calculateCenter(touch1, touch2),
         };
-    }
+    } 
 
     pinchZoom(touch1, touch2) {
         this.tapTimer = 100;

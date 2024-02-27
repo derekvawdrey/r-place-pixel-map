@@ -3,10 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if(isLoggedIn()){
         let loginLink = document.getElementById("loginLink");
         let registerLink = document.getElementById("registerLink");
+        let username = document.getElementById("username");
+        let logoutLink = document.getElementById("logoutLink");
+        console.log("Updating nav");
         if(loginLink){
             loginLink.classList.add("hidden");
             registerLink.classList.add("hidden");
+
         }
+        if(username){
+            username.innerText = getUsername();
+        }
+        if(logoutLink){
+            logoutLink.classList.remove("hidden");
+        }
+
     }else{
         let profileLink = document.getElementById("profileLink");
         profileLink.classList.add("hidden");
@@ -24,7 +35,8 @@ function login(){
     response.then((data)=>{
         console.log(data);
         errorMessageElement.innerText = "";
-        setUserToken(data);
+        setUserToken(data.auth_token);
+        setUsername(data.username);
         closeModal();
         window.location.reload();
     }).catch((error)=>{
@@ -41,7 +53,8 @@ async function register(){
     let response = Api.handleRegistration(username,password);
     response.then((data)=>{
         console.log(data);
-        setUserToken(data);
+        setUserToken(data.auth_token);
+        setUsername(data.username);
         errorMessageElement.innerText = "";
         closeModal();
         window.location.reload();
@@ -49,10 +62,13 @@ async function register(){
 };
 
 function logout(){
-    setUserToken(null);
+    setUserToken("");
+    setUsername("");
+    window.location.reload();
 }
 
 function isLoggedIn(){
-    let loggedIn = getUserToken() ? true : false;
+    let loggedIn = getUserToken().length>0 ? true : false;
+    if(loggedIn)console.log("User is - ", getUserToken());
     return loggedIn;
 }

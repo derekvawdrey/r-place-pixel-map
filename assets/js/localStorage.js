@@ -4,7 +4,8 @@
  * 
  */
 function setUserToken(authToken){
-    localStorage.setItem("user-token", authToken);
+    console.log("Setting user token as: ",authToken)
+    localStorage.setItem("authToken", authToken);
 }
 
 /**
@@ -13,7 +14,17 @@ function setUserToken(authToken){
  * 
  */
 function getUserToken(){
-    localStorage.getItem("user-token");
+    return localStorage.getItem("authToken");
+}
+
+
+
+function setUsername(username){
+    localStorage.setItem("username", username);
+}
+
+function getUsername(){
+    return localStorage.getItem("username");
 }
 
 /**

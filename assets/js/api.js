@@ -78,8 +78,8 @@ class Api{
     static async handleAuth(username, password){
         console.log("Authenticating: ", username, " ", password);
         return new Promise((resolve,reject) => {
-            if (username == "user" && password == "password"){
-                resolve("Usertokenhere");
+            if (username.length != 0 && password.length != 0){
+                resolve({username:username, auth_token:"asdasdasdasd"});
             }else{
                 
                 reject("Incorrect username and password combination... (Try username:user and password:password)");
@@ -90,7 +90,7 @@ class Api{
     static async handleRegistration(username, password){
         console.log("Registering: ", username, " ", password);
         return new Promise((resolve,reject) => {
-            resolve("TOKEN HERE");
+            resolve({username:username, auth_token:"asdasdasdasd"});
         });
     }
 

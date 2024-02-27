@@ -21,11 +21,12 @@
                         <div class="profile-circle">
                             <img src="./assets/images/profile.jpg">
                         </div>
-                        <p class="profile-username">Profile name</p>
+                        <p class="profile-username" id="username">Profile name</p>
                     </a>
                     <ul class="nav-links">
                         <li><a href="#" id="loginLink" data-open-modal-id="loginModal">Login</a></li>
                         <li><a href="#" id="registerLink" data-open-modal-id="registerModal">Register</a></li>
+                        <li><a href="javascript:logout()" id="logoutLink" class="hidden">Logout</a></li>
                     </ul>
                     <div class="mobile-menu-burger">
                         <div class="line"></div>
@@ -71,7 +72,7 @@
             <section class="modal hidden" id="registerModal">
                 <div class="modal-body">
                     <div style="width:50%;">
-                        <h1>Login</h1>
+                        <h1>Register</h1>
                     </div>
                     <div style="width:50%;">
                     <form method="post" action="javascript:register()">

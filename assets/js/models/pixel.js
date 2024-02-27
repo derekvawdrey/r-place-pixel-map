@@ -4,6 +4,7 @@ class Pixel{
     r;
     g;
     b;
+    hex;
 
     constructor(x,y,r,g,b){
         this.x = x;
@@ -11,5 +12,7 @@ class Pixel{
         this.r = r;
         this.g = g;
         this.b = b;
+        this.hex = PIXI.utils.rgb2hex([r / 255, g / 255, b / 255])
     }
+
 }
