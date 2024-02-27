@@ -207,7 +207,7 @@ class pixelatedCanvas {
         if (this.pinchStart) {
             const currentDistance = this.calculateDistance(touch1, touch2);
             const deltaDistance = currentDistance - this.pinchStart.distance;
-            const scaleFactor = 1 + deltaDistance / this.app.renderer.width; // Adjust as needed
+            const scaleFactor = 1 + deltaDistance / this.app.renderer.width;
 
             this.zoomIn(scaleFactor);
             this.pinchStart.distance = currentDistance;

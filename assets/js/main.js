@@ -2,7 +2,7 @@ var currentGame;
 var currentMap;
 
 document.addEventListener("DOMContentLoaded", async function() {
-    currentMap = new PixelatedMap(10,10,"largeMeatWizards");
+    currentMap = new PixelatedMap(5,5,"smallMeatWizards");
     await currentMap.loadMap();
 
     currentGame = new pixelatedCanvas(

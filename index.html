@@ -1,111 +1,111 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Startup HTML</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
-    <link href="./assets/css/main.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
-
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a class="logo" href="index.html">Pixelated Place</a>
-            <div class="nav-links-container">
-                <a class="profile-container" href="./profile_page.html" id="profileLink">
-                    <div class="profile-circle">
-                        <img src="./assets/images/profile.jpg">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Startup HTML</title>
+        <link rel="icon" href="favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+            rel="stylesheet">
+        <link href="./assets/css/main.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a class="logo" href="index.html">Pixelated Place</a>
+                <div class="nav-links-container">
+                    <a class="profile-container" href="./profile_page.html" id="profileLink">
+                        <div class="profile-circle">
+                            <img src="./assets/images/profile.jpg">
+                        </div>
+                        <p class="profile-username">Profile name</p>
+                    </a>
+                    <ul class="nav-links">
+                        <li><a href="#" id="loginLink" data-open-modal-id="loginModal">Login</a></li>
+                        <li><a href="#" id="registerLink" data-open-modal-id="registerModal">Register</a></li>
+                    </ul>
+                    <div class="mobile-menu-burger">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
                     </div>
-                    <p class="profile-username">Profile name</p>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#" id="loginLink" data-open-modal-id="loginModal">Login</a></li>
-                    <li><a href="#" id="registerLink" data-open-modal-id="registerModal">Register</a></li>
-                </ul>
-                <div class="mobile-menu-burger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-                </menu>
-        </nav>
-    </header>
-    <main class="game" id="pixelCanvasAppend">
-        <!-- Replacing this with a javascript library <canvas id="pixelCanvas"></canvas> -->
-        <div class="game-bar">
-            <div class="color color-ffb3ba"></div>
-            <div class="color color-ffdfba"></div>
-            <div class="color color-ffffba"></div>
-            <div class="color color-baffc9"></div>
-            <div class="color color-bae1ff"></div>
-            <div class="color color-ff7f7f"></div>
-            <div class="color color-7fbfff"></div>
-            <div class="color color-7fff7f"></div>
-            <div class="color color-ff7fff"></div>
-            <div class="color color-ffff7f"></div>
-        </div>
-
-
-        <section class="modal hidden" id="loginModal">
-            <div class="modal-body">
-                <div style="width:50%;">
-                    <h1>Login</h1>
-                </div>
-                <div style="width:50%;">
-                <form method="post" action="javascript:login()">
-                    <label for="name">Username</label>
-                    <input type="text" id="login-name" placeholder="Username" />
-                    <label for="password">Password</label>
-                    <input type="text" id="login-password" placeholder="Password" />
-                    <span class="error" id="login-error"></span>
-                    <button type="submit" id="login_submit">Login</button>
-                  </form>
-                </div>
+                    </menu>
+            </nav>
+        </header>
+        <main class="game" id="pixelCanvasAppend">
+            <!-- Replacing this with a javascript library <canvas id="pixelCanvas"></canvas> -->
+            <div class="game-bar">
+                <div class="color color-ffb3ba"></div>
+                <div class="color color-ffdfba"></div>
+                <div class="color color-ffffba"></div>
+                <div class="color color-baffc9"></div>
+                <div class="color color-bae1ff"></div>
+                <div class="color color-ff7f7f"></div>
+                <div class="color color-7fbfff"></div>
+                <div class="color color-7fff7f"></div>
+                <div class="color color-ff7fff"></div>
+                <div class="color color-ffff7f"></div>
             </div>
-        </section>
-        <section class="modal hidden" id="registerModal">
-            <div class="modal-body">
-                <h1>Register</h1>
-                <form method="post" action="javascript:register()">
-                    <label for="name">Username</label>
-                    <input type="text" id="register-name" placeholder="Username" />
-                    <label for="password">Password</label>
-                    <input type="text" id="register-password" placeholder="Password" />
-                    <span class="error" id="register-error"></span>
-                    <button type="submit">Register</button>
-                  </form>
-            </div>
-        </section>
-        
-        <div class="modal-overlay hidden" id="modal-overlay"></div>
 
-    </main>
-    <footer>
-        <span class="name">Derek Vawdrey - </span>
-        <a class="" href="https://github.com/derekvawdrey/startup">GitHub</a>
-    </footer>
 
-    
-    <script src="./assets/js/models/map.js"></script>
-    <script src="./assets/js/models/pixel.js"></script>
-    <script src="./assets/js/models/user.js"></script>
+            <section class="modal hidden" id="loginModal">
+                <div class="modal-body">
+                    <div style="width:50%;">
+                        <h1>Login</h1>
+                    </div>
+                    <div style="width:50%;">
+                        <form method="post" action="javascript:login()">
+                            <label for="name">Username</label>
+                            <input type="text" id="login-name" placeholder="Username" />
+                            <label for="password">Password</label>
+                            <input type="text" id="login-password" placeholder="Password" />
+                            <span class="error" id="login-error"></span>
+                            <button type="submit" id="login_submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section class="modal hidden" id="registerModal">
+                <div class="modal-body">
+                    <div style="width:50%;">
+                        <h1>Login</h1>
+                    </div>
+                    <div style="width:50%;">
+                    <form method="post" action="javascript:register()">
+                        <label for="name">Username</label>
+                        <input type="text" id="register-name" placeholder="Username" />
+                        <label for="password">Password</label>
+                        <input type="text" id="register-password" placeholder="Password" />
+                        <span class="error" id="register-error"></span>
+                        <button type="submit">Register</button>
+                    </form>
+                    </div>
+                </div>
+            </section>
 
-    <script src="./assets/js/canvas/webCanvas.js"></script>
-    <script src="./assets/js/storedPixelMap.js"></script>
-    <script src="./assets/js/localStorage.js"></script>
-    <script src="./assets/js/modal.js"></script>
-    <script src="./assets/js/api.js"></script>
-    <script src="./assets/js/nav.js"></script>
-    <script src="./assets/js/auth.js"></script>
-    <script src="./assets/js/main.js"></script>
-</body>
+            <div class="modal-overlay hidden" id="modal-overlay"></div>
 
+        </main>
+        <footer>
+            <span class="name">Derek Vawdrey - </span>
+            <a class="" href="https://github.com/derekvawdrey/startup">GitHub</a>
+        </footer>
+
+
+        <script src="./assets/js/models/map.js"></script>
+        <script src="./assets/js/models/pixel.js"></script>
+        <script src="./assets/js/models/user.js"></script>
+
+        <script src="./assets/js/canvas/webCanvas.js"></script>
+        <script src="./assets/js/storedPixelMap.js"></script>
+        <script src="./assets/js/localStorage.js"></script>
+        <script src="./assets/js/modal.js"></script>
+        <script src="./assets/js/api.js"></script>
+        <script src="./assets/js/nav.js"></script>
+        <script src="./assets/js/auth.js"></script>
+        <script src="./assets/js/main.js"></script>
+    </body>
 </html>
