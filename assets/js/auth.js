@@ -23,8 +23,10 @@ function login(){
     let response = Api.handleAuth(username,password);
     response.then((data)=>{
         console.log(data);
-        setUserToken(data);
         errorMessageElement.innerText = "";
+        setUserToken(data);
+        closeModal();
+        window.location.reload();
     }).catch((error)=>{
         console.log(error);
         errorMessageElement.innerText = error;
@@ -32,7 +34,18 @@ function login(){
 }
 
 async function register(){
+    let username = document.getElementById("register-name").value;
+    let password = document.getElementById("register-password").value;
+    let errorMessageElement = document.getElementById("register-error");
 
+    let response = Api.handleRegistration(username,password);
+    response.then((data)=>{
+        console.log(data);
+        setUserToken(data);
+        errorMessageElement.innerText = "";
+        closeModal();
+        window.location.reload();
+    })
 };
 
 function logout(){

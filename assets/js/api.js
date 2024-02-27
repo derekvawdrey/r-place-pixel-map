@@ -43,4 +43,11 @@ class Api{
         });
     }
 
+    static async handleRegistration(username, password){
+        console.log("Registering: ", username, " ", password);
+        return new Promise((resolve,reject) => {
+            resolve("TOKEN HERE");
+        });
+    }
+
 }
