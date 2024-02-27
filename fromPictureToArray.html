@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Array</title>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*" onchange="loadImage()">
+    <canvas id="canvas" width="100" height="100"></canvas>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+    <script>
+        let pixelArray = [];
+
+        function loadImage() {
+            const input = document.getElementById('imageInput');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+
+            const image = new Image();
+            image.src = URL.createObjectURL(input.files[0]);
+
+            image.onload = function() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(image, 0, 0, 100, 100);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+                pixelArray = [];
+
+                for (let y = 0; y < canvas.height; y++) {
+                    for (let x = 0; x < canvas.width; x++) {
+                        const index = (y * canvas.width + x) * 4;
+                        const r = imageData.data[index];
+                        const g = imageData.data[index + 1];
+                        const b = imageData.data[index + 2];
+                        const a = imageData.data[index + 3];
+
+                        const pixel = {
+                            x: x,
+                            y: y,
+                            r: r,
+                            g: g,
+                            b: b,
+                        };
+
+                        pixelArray.push(pixel);
+                    }
+                }
+
+                console.log(pixelArray);
+            };
+        }
+
+        function copyToClipboard() {
+            const jsonString = JSON.stringify(pixelArray, null, 2);
+            const textArea = document.createElement('textarea');
+            textArea.value = jsonString;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Array copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
