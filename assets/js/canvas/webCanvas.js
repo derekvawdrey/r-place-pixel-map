@@ -43,9 +43,7 @@ class pixelatedCanvas {
 
         this.drawnMap = new PIXI.Graphics();
         this.drawnMap.interactive = true;
-        this.drawnMap.on("pointerout", (event) => this.removePixelDrawer(event));
-        this.drawnMap.on("mousemove", (event) => this.updatePixelDrawer(event));
-        this.drawnMap.on("click", (event) => this.handleClickEvent(event));
+
         this.drawnMap.x = (this.app.renderer.width - this.map.width * this.map.pixelWidth) / 2;
         this.drawnMap.y = (this.app.renderer.height - this.map.height * this.map.pixelHeight) / 2;
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -63,11 +61,18 @@ class pixelatedCanvas {
         this.camPos = { x: 0.00, y: 0.00 }
 
         this.drawMapToCanvas();
+        this.initializeDrawEvents();
         this.initializeZoomEvents();
         this.initalizePanningEvents();
         this.initializeTouchEvents();
         this.initalized = true;
 
+    }
+
+    initializeDrawEvents(){
+        this.drawnMap.on("pointerout", (event) => this.removePixelDrawer(event));
+        this.drawnMap.on("mousemove", (event) => this.updatePixelDrawer(event));
+        this.drawnMap.on("click", (event) => this.handleClickEvent(event));
     }
 
     /**
