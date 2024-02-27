@@ -12,7 +12,6 @@ class Api{
      * 
      */
     static async getPixelMap(mapId){
-        console.log("API CALL",mapId);
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if(localStorage.getItem("map-"+mapId) !== null){
@@ -62,7 +61,6 @@ class Api{
             if(pixel.x < map[0].length && pixel.y <= map.length){
                 map[pixel.x][pixel.y] = pixel;
                 localStorage.setItem("map-"+mapId, JSON.stringify(map));
-                console.log(pixel);
             }
         })
     }

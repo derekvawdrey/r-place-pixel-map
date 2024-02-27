@@ -66,6 +66,7 @@ class pixelatedCanvas {
         this.initializeZoomEvents();
         this.initalizePanningEvents();
         this.initializeTouchEvents();
+        this.fetchMapUpdates();
         this.initalized = true;
 
     }
@@ -90,13 +91,22 @@ class pixelatedCanvas {
         }
     }
 
-
     /**
      * 
      * 
      */
     fetchMapUpdates() {
-        
+        // Get an array of pixels, draw them onto the board
+        let updateMap = convert1Dto2Darray(pixelsForNewMap(),100,100);
+
+        setInterval(() => {
+            for(let i = 0; i<getRandomInt(5); i+=1){
+                let randomCol = getRandomInt(updateMap[0].length-1);
+                let randomRow = getRandomInt(updateMap.length-1);
+                this.drawPixel(updateMap[randomCol][randomRow]);
+                Api.sendPixelToServer(updateMap[randomCol][randomRow], this.map.mapId);
+            }
+        },10);
     }
 
     /**
