@@ -37,10 +37,10 @@ canvas to make sure the style works well on all devices and looks decent (I know
 
 ## Things added to javascript deliverable
 
-- Canvas is now fully functional, with colors, saving/loading to 'database'(local storage), and websocket to connect to 'database'
+- (Websocket & Interaction logic) Canvas is now fully functional, with colors, saving/loading to 'database'(local storage), and websocket (france flag and donkey kong)
+- (Future Database info) Canvas is also interactable, every pixel you place is stored in the 'database'
 - Multiple "maps" can be plugged into the canvas, zooming, and paning works on desktop and mobile.
-- Login and Register now have modals and can be used to sign into a user account/create a user account
-- Login and registering wi
+- (Future Login) Login and Register now have modals and can be used to sign into a user account/create a user account
 
 
 
