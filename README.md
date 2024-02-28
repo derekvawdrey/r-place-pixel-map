@@ -40,6 +40,7 @@ canvas to make sure the style works well on all devices and looks decent (I know
 - (Websocket & Interaction logic) Canvas is now fully functional, with colors, saving/loading to 'database'(local storage), and websocket (france flag and donkey kong)
 - (Future Database info) Canvas is also interactable, every pixel you place is stored in the 'database'
 - Multiple "maps" can be plugged into the canvas, zooming, and paning works on desktop and mobile.
+- Use mouses middle button to scroll around the canvas, and the middle scroll wheel to zoom. Or use your phone.
 - (Future Login) Login and Register now have modals and can be used to sign into a user account/create a user account
 - The profile page is not done as I am debating if I even want that yet.
 
