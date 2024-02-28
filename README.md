@@ -41,6 +41,7 @@ canvas to make sure the style works well on all devices and looks decent (I know
 - (Future Database info) Canvas is also interactable, every pixel you place is stored in the 'database'
 - Multiple "maps" can be plugged into the canvas, zooming, and paning works on desktop and mobile.
 - (Future Login) Login and Register now have modals and can be used to sign into a user account/create a user account
+- The profile page is not done as I am debating if I even want that yet.
 
 
 
