@@ -32,7 +32,17 @@ Each point addresses authentication, database data, and websocket data respectiv
 - I rearranged my repository so that it is easier to manage all my files.
 - Added a nav bar, with a mobile friendly collapsable hamburger menu
 - Added an image for the profile (this is the only image)
-- For the front page I added in a super super dumbed down version of the drawing canvas to make sure the style works well on all devices and looks decent (I know javascript wasn't necessary but for styling purposes this was.)
+- For the front page I added in a super super dumbed down version of the drawing 
+canvas to make sure the style works well on all devices and looks decent (I know javascript wasn't necessary but for styling purposes this was.)
+
+## Things added to javascript deliverable
+
+- Canvas is now fully functional, with colors, saving/loading to 'database'(local storage), and websocket to connect to 'database'
+- Multiple "maps" can be plugged into the canvas, zooming, and paning works on desktop and mobile.
+- Login and Register now have modals and can be used to sign into a user account/create a user account
+- Login and registering wi
+
+
 
 ## Mock picture
 
