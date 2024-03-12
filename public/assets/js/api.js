@@ -145,8 +145,13 @@ class Api {
                     },
                 })
 
-                const color = response.hex.clean;
-                resolve(color);
+                const url = response.url;
+
+                // This is weird because it gives me a redirect
+                var hexIndex = url.indexOf("hex=");
+                var hexValue = url.substring(hexIndex + 4);
+
+                resolve(hexValue);
 
             } catch (error) {
                 reject(error);
