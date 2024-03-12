@@ -44,10 +44,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 window.onload = async function () {
     for(let i = 0; i < 15; i++){
-        await Api.loadRandomColors().then((colors) => {
-            colors.forEach((color) => {
+        await Api.loadRandomColors().then((color) => {
                 appendColorDivToGameBar(color);
-            });
         });
     }
     function appendColorDivToGameBar(hexColor) {
