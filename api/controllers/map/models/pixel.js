@@ -1,4 +1,3 @@
-
 class Pixel{
     x;
     y;
@@ -13,11 +12,8 @@ class Pixel{
         this.r = r;
         this.g = g;
         this.b = b;
-        this.hex = "#123123"
     }
 
 }
-
-
 
 module.exports = {Pixel};

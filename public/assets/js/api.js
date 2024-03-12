@@ -35,27 +35,28 @@ class Api{
         });
     }
     
-    
-    static getMapByMapId(mapId){
-        if(mapId == "largeMeatWizards"){
-            let tempMap = largeMeatWizards();
-            return convert1Dto2Darray(tempMap,300,300);
-        }else if(mapId == "smallMeatWizards"){
-            let tempMap = meatWizards();
-            return convert1Dto2Darray(tempMap,100,100);
-        }else{
-            let tempMap = pixelsForNewMap();
-            return convert1Dto2Darray(tempMap,100,100);
-        }
-    }
+    static async sendPixelToServer(pixel, mapId) {
+        const apiUrl = `http://localhost:3000/api/v1/map/${mapId}`;
 
-    static async sendPixelToServer(pixel, mapId){
-        this.getPixelMap(mapId).then((map)=>{
-            if(pixel.x < map[0].length && pixel.y <= map.length){
-                map[pixel.x][pixel.y] = pixel;
-                localStorage.setItem("map-"+mapId, JSON.stringify(map));
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(pixel),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error sending pixel to server: ${response.statusText}`);
             }
-        })
+
+            const updatedMap = await response.json();
+            return updatedMap;
+        } catch (error) {
+            console.error('Error sending pixel to server:', error);
+            throw error; // Rethrow the error for further handling if needed
+        }
     }
 
 

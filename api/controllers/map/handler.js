@@ -1,50 +1,44 @@
+const tempMap = require("./helpers/generatePremadeMap");
+const Pixel = require("./models/pixel");
+const pixelHelper = require("./helpers/pixelHelper");
+var map = tempMap.generateTempMap("largeMeatWizards");
+
+
 /**
  * 
- * 
+ * Grabs a 2d map of Pixel objects
  * @param {*} req 
  * @param {*} res 
  */
-
-const storedPixelMaps = require("./helpers/storedPixelMap");
-const { Pixel } = require('./models/pixel');
-
-let map = [];
-generateTempMap("largeMeatWizards");
-
-function generateTempMap(mapId){
-    // This part will be done in the backend:
-    let pixelToMap = getMapByMapId(mapId);
-    console.log(pixelToMap)
-
-    let tempWidth = pixelToMap[0].length;
-    let tempHeight = pixelToMap.length;
-
-    for (let width = 0; width < tempWidth; width += 1) {
-        map[width] = [];
-        for(let height = 0; height < tempHeight; height += 1){
-
-            let newPixel = pixelToMap[width][height];
-
-            map[width][height] = new Pixel(width,height,newPixel.r,newPixel.g,newPixel.b)
-        }
-    }
-}
-
-function getMapByMapId(mapId){
-    if(mapId == "largeMeatWizards"){
-        let tempMap = storedPixelMaps.largeMeatWizards();
-        return storedPixelMaps.convert1Dto2Darray(tempMap,300,300);
-    }else if(mapId == "smallMeatWizards"){
-        let tempMap = storedPixelMaps.meatWizards();
-        return storedPixelMaps.convert1Dto2Darray(tempMap,100,100);
-    }else{
-        let tempMap = storedPixelMaps.pixelsForNewMap();
-        return storedPixelMaps.convert1Dto2Darray(tempMap,100,100);
-    }
-}
-
 const grabMap = async (req, res) => {
     res.send(map);
 }
 
-module.exports = { grabMap }
+/**
+ * Takes a Pixel object from post and modifies the map
+ * @param {*} req 
+ * @param {*} res 
+ */
+const drawPixel = async (req, res) => {
+    try {
+        const { x, y, r, g, b } = req.body;
+        
+        if (pixelHelper.isValidPixelData(x, y, r, g, b)) {
+            const pixel = new Pixel.Pixel(x, y, r, g, b);
+            console.log("Valid - ", x,y,r,g,b);
+            map[x][y] = pixel;
+            res.send(map);
+        } else {
+            console.log("Invalid - ", x,y,r,g,b);
+            res.status(400).send("Invalid pixel data");
+        }
+    } catch (error) {
+        console.error("Error drawing pixel:", error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+
+
+
+module.exports = { grabMap, drawPixel };

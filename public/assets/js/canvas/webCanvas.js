@@ -97,42 +97,7 @@ class pixelatedCanvas {
      */
     fetchMapUpdates() {
         // Get an array of pixels, draw them onto the board
-        let updateMap = convert1Dto2Darray(donkeyKong(),50,50);
-
-        let mapX = 0;
-        let mapY = 75;
-
-        setInterval(() => {
-            for(let i = 0; i<getRandomInt(5); i+=1){
-                let randomCol = getRandomInt(updateMap[0].length-1);
-                let randomRow = getRandomInt(updateMap.length-1);
-                this.drawPixel(updateMap[randomCol][randomRow]);
-                this.map.map[randomCol][randomRow] = updateMap[randomCol][randomRow];
-                Api.sendPixelToServer(updateMap[randomCol][randomRow], this.map.mapId);
-            }
-            
-
-            
-        },10);
-
-        setInterval(()=>{
-            if(mapX < this.map.map.length -1){
-                mapX += 1;
-                let redPixel = new Pixel(mapX,mapY,255,0,0);
-                let whitePixel = new Pixel(mapX, mapY+1, 255,255,255);
-                let bluePixel = new Pixel(mapX, mapY+2, 0,0,255);
-
-                this.drawPixel(redPixel);
-                this.drawPixel(whitePixel);
-                this.drawPixel(bluePixel);
-                this.map.map[mapX][mapY] = redPixel;
-                this.map.map[mapX][mapY+1] = whitePixel;
-                this.map.map[mapX][mapY+2] = bluePixel;
-                Api.sendPixelToServer(redPixel, this.map.mapId);
-                Api.sendPixelToServer(whitePixel, this.map.mapId);
-                Api.sendPixelToServer(bluePixel, this.map.mapId);
-            }
-        },500)
+        
     }
 
     /**
