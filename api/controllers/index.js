@@ -1,8 +1,7 @@
-
 const VERSION = 'v1';
 const API_PATH = `/api/${VERSION}`;
+const mapRoutes = require("./map");
 
 module.exports = app => {
-    app.use(`${API_PATH}/map`, require("./map").routes);
-    
+    app.use(`${API_PATH}/map/:mapId`, mapRoutes.router);
 }

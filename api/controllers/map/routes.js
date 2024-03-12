@@ -1,6 +1,7 @@
-const routes = require('express').Router()
-const { grabMap } = require('./handler')
+const express = require('express');
+const router = express.Router();
+const { grabMap } = require('./handler');
 
-routes.get('/map', grabMap)
+router.get('/', grabMap);
 
-module.exports = { routes }
+module.exports = router;

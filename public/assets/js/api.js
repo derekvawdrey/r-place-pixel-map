@@ -11,37 +11,30 @@ class Api{
      * Do an API call to the database to get the PixelMap for the board
      * 
      */
-    static async getPixelMap(mapId){
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if(localStorage.getItem("map-"+mapId) !== null){
-                    resolve(JSON.parse(localStorage.getItem("map-"+mapId)))
-                }else{
-                    let map = [];
-                    // Temporary map stored on the 'server'
-                    // This part will be done in the backend:
-                    let pixelToMap = this.getMapByMapId(mapId);
-                    console.log(pixelToMap)
-
-                    let tempWidth = pixelToMap[0].length;
-                    let tempHeight = pixelToMap.length;
-                    
-                    for (let width = 0; width < tempWidth; width += 1) {
-                        map[width] = [];
-                        for(let height = 0; height < tempHeight; height += 1){
-
-                            let newPixel = pixelToMap[width][height];
-
-                            map[width][height] = new Pixel(width,height,newPixel.r,newPixel.g,newPixel.b)
-                        }
-                    }
-
-                    localStorage.setItem("map-"+mapId, JSON.stringify(map));
-                    resolve(map);
+    static getPixelMap(mapId) {
+        const apiUrl = `http://localhost:3000/api/v1/map/${mapId}`;
+    
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                if (!response.ok) {
+                    reject(`Error: ${response.status} - ${response.statusText}`);
                 }
-            }, 300);
-          });
+    
+                const data = await response.json();
+                resolve(data);
+            } catch (error) {
+                reject(`Fetch error: ${error.message}`);
+            }
+        });
     }
+    
     
     static getMapByMapId(mapId){
         if(mapId == "largeMeatWizards"){

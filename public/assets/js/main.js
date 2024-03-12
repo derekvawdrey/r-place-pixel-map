@@ -11,6 +11,17 @@ function hexToRgb(hex) {
     return { r, g, b };
 }
 
+function convert1Dto2Darray(array, width, height){
+    let newArray = []
+    for(let col = 0; col < width; col+=1){
+        newArray[col] = [];
+        for(let row = 0; row < height; row += 1){
+            newArray[col][row] = array[col + row*width]
+        }
+    }
+    return newArray;
+}
+
 document.addEventListener("DOMContentLoaded", async function() {
     currentMap = new PixelatedMap(5,5,"smallMeatWizards");
     await currentMap.loadMap();
