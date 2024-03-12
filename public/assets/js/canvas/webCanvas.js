@@ -350,7 +350,7 @@ class pixelatedCanvas {
         );
         this.drawnMap.addChild(this.pixelBorder);
 
-        if(this.isDrawDrag && this.previousX != mousePositions.gridX && this.previousY != mousePositions.gridY){
+        if(this.isDrawDrag && (this.previousX != mousePositions.gridX || this.previousY != mousePositions.gridY)){
             this.previousX = mousePositions.gridX;
             this.previousY = mousePositions.gridY;
             this.drawPixelToCanvas(mousePositions.gridX,mousePositions.gridY);
