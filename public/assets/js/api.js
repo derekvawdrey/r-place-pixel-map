@@ -1,4 +1,4 @@
-class Api{
+class Api {
 
 
     static getRandomInteger(min, max) {
@@ -13,7 +13,7 @@ class Api{
      */
     static getPixelMap(mapId) {
         const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
-    
+
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await fetch(apiUrl, {
@@ -22,11 +22,11 @@ class Api{
                         'Content-Type': 'application/json',
                     },
                 });
-    
+
                 if (!response.ok) {
                     reject(`Error: ${response.status} - ${response.statusText}`);
                 }
-    
+
                 const data = await response.json();
                 resolve(data);
             } catch (error) {
@@ -34,7 +34,7 @@ class Api{
             }
         });
     }
-    
+
     static async sendPixelToServer(pixel, mapId) {
         const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
 
@@ -65,24 +65,43 @@ class Api{
      * Resolves with the user info and puts the user info into local storage
      * @param {string} username 
      * @param {string} password 
-     *
+     * @returns {Promise}
      */
-    static async handleAuth(username, password){
+    static async handleAuth(username, password) {
         console.log("Authenticating: ", username, " ", password);
-        return new Promise((resolve,reject) => {
-            if (username.length != 0 && password.length != 0){
-                resolve({username:username, auth_token:"asdasdasdasd"});
-            }else{
-                
+        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/auth';
+
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await axios.post(apiUrl, { username, password });
+                const authToken = response.data.token;
+                localStorage.setItem('authToken', authToken);
+                resolve({ username, auth_token: authToken });
+            } catch (error) {
                 reject("Incorrect username and password combination... (Try username:user and password:password)");
             }
         });
     }
 
-    static async handleRegistration(username, password){
+    /**
+     * Resolves with the user info and puts the user info into local storage
+     * @param {string} username 
+     * @param {string} password 
+     * @returns {Promise}
+     */
+    static async handleRegistration(username, password) {
         console.log("Registering: ", username, " ", password);
-        return new Promise((resolve,reject) => {
-            resolve({username:username, auth_token:"asdasdasdasd"});
+        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/register';
+
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await axios.post(apiUrl, { username, password });
+                const authToken = response.data.token;
+                localStorage.setItem('authToken', authToken);
+                resolve({ username, auth_token: authToken });
+            } catch (error) {
+                reject(error);
+            }
         });
     }
 

@@ -1,4 +1,8 @@
 const jwt = require('jsonwebtoken');
+const SECRET_KEY = "SUSSYBAKA";
+
+let combos = {};
+combos["demoUser"] = "demoPassword";
 
 /**
  * Provided with a username and password, the user will be authenticated and given a JWT
@@ -6,10 +10,14 @@ const jwt = require('jsonwebtoken');
  * @param {*} res 
  */
 const authenticate = (req, res) => {
-    const username = 'demoUser';
-    const password = 'demoPassword';
+    let password = "";
+    if(combos[req.body.username]){
+        password = combos[req.body.username];
+    }else{
+        res.status(401).json({ error: 'Unauthorized' });
+    }
 
-    if (req.body.username === username && req.body.password === password) {
+    if (password === password) {
         const token = jwt.sign({ username: req.body.username }, SECRET_KEY, { expiresIn: '1h' });
         res.json({ token });
     } else {
@@ -17,4 +25,30 @@ const authenticate = (req, res) => {
     }
 };
 
-module.exports = {authenticate};
+/**
+ * Temporarily registers user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const register = (req, res) => {
+    const { username, password } = req.body;
+  
+    if (!username || !password) {
+      res.status(400).json({ error: 'Username and password are required' });
+      return;
+    }
+  
+    // Check if the username is already taken
+    if (combos[username]) {
+      res.status(400).json({ error: 'Username already exists' });
+      return;
+    }
+  
+    // Store the new user
+    combos[username] = password;
+    const token = jwt.sign({ username: username }, SECRET_KEY, { expiresIn: '1h' });
+    res.json({ message: 'User registered successfully', token:token });
+  };
+
+module.exports = {authenticate, register};
