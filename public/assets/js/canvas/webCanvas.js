@@ -9,6 +9,7 @@ class pixelatedCanvas {
     drawnMap
     pixelBorder
     initalized
+    isDrawDrag
 
     // THis is a tap timer to determine if we need to put a pixel or not
     tapTimer
@@ -24,6 +25,7 @@ class pixelatedCanvas {
         this.map = map;
         this.initalized = false;
         this.tapTimer = 0;
+        this.isDrawDrag = false;
         this.app = new PIXI.Application({
             background: '#EEE',
             resizeTo: window,
@@ -255,7 +257,31 @@ class pixelatedCanvas {
         this.drawnMap.on("pointerout", (event) => this.removePixelDrawer(event));
         this.drawnMap.on("mousemove", (event) => this.updatePixelDrawer(event));
         this.drawnMap.on("click", (event) => this.handleClickEvent(event));
+
+        this.drawnMap.on('mousedown', (event) => this.enableDrawDrag(event));
+        this.drawnMap.on('mouseup', (event) => this.enableDrawDrag(event));
     }
+
+    /**
+     * Draws a pixel on click or touchend
+     * @param {Event} event 
+     */
+    enableDrawDrag(event){
+        if(event.button === 0){
+            this.isDrawDrag = true;
+        }
+    }
+
+    /**
+     * Draws a pixel on click or touchend
+     * @param {Event} event 
+     */
+    disableDrawDrag(event){
+        if(event.button === 0){
+            this.isDrawDrag = false;
+        }
+    }
+
 
     /**
      * Draws a pixel on click or touchend
@@ -266,17 +292,28 @@ class pixelatedCanvas {
 
         if (event.type === 'click' && event.button === 0) {
             mousePositions = this.getPixelXY(event);
+            this.isDrawDrag = false;
         } else if (event.type === 'touchend') {
             event.preventDefault();
             const touch = event.changedTouches[0];
             mousePositions = this.getPixelXY(touch);
+            this.isDrawDrag = false;
         } else {
             return;
         }
 
         let x = mousePositions.gridX;
         let y = mousePositions.gridY;
+        this.drawPixelToCanvas(x,y);
 
+    }
+
+    /**
+     * Draws pixel on canvas and sends to Api
+     * @param {*} x 
+     * @param {*} y 
+     */
+    drawPixelToCanvas(x,y){
         const color = hexToRgb(selectedColor);
 
         let newPixel = new Pixel(x, y, color.r, color.g, color.b);
@@ -303,6 +340,10 @@ class pixelatedCanvas {
             this.map.pixelHeight
         );
         this.drawnMap.addChild(this.pixelBorder);
+
+        if(this.isDrawDrag){
+            this.drawPixelToCanvas(mousePositions.gridX,mousePositions.gridY);
+        }
     }
 
     /**
