@@ -11,6 +11,9 @@ class pixelatedCanvas {
     initalized
     isDrawDrag
 
+    previouxX
+    previouxY
+
     // THis is a tap timer to determine if we need to put a pixel or not
     tapTimer
 
@@ -25,7 +28,13 @@ class pixelatedCanvas {
         this.map = map;
         this.initalized = false;
         this.tapTimer = 0;
+
+
+        // For drag
         this.isDrawDrag = false;
+        this.previousX = 0;
+        this.previousY = 0;
+
         this.app = new PIXI.Application({
             background: '#EEE',
             resizeTo: window,
@@ -341,7 +350,9 @@ class pixelatedCanvas {
         );
         this.drawnMap.addChild(this.pixelBorder);
 
-        if(this.isDrawDrag){
+        if(this.isDrawDrag && this.previousX != mousePositions.gridX && this.previousY != mousePositions.gridY){
+            this.previousX = mousePositions.gridX;
+            this.previousY = mousePositions.gridY;
             this.drawPixelToCanvas(mousePositions.gridX,mousePositions.gridY);
         }
     }
