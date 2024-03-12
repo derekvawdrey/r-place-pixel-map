@@ -7,6 +7,6 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 app.set('port', port);
 
 http.createServer(app).listen(
-    appPort,
-    () => console.log(`Node app running at localhost:${appPort}`)
+    port,
+    () => console.log(`Node app running at localhost:${port}`)
     );
