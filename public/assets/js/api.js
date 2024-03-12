@@ -12,7 +12,7 @@ class Api{
      * 
      */
     static getPixelMap(mapId) {
-        const apiUrl = `http://localhost:4000/api/v1/map/${mapId}`;
+        const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
     
         return new Promise(async (resolve, reject) => {
             try {
@@ -36,7 +36,7 @@ class Api{
     }
     
     static async sendPixelToServer(pixel, mapId) {
-        const apiUrl = `http://localhost:4000/api/v1/map/${mapId}`;
+        const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
 
         try {
             const response = await fetch(apiUrl, {
