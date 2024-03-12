@@ -26,21 +26,3 @@ function setUsername(username){
 function getUsername(){
     return localStorage.getItem("username");
 }
-
-/**
- * 
- * 
- * 
- */
-function setMap(map){
-    localStorage.setItem("map", map);
-}
-
-/**
- * 
- * 
- * 
- */
-function getMap(){
-    return localStorage.getItem("map")
-}
