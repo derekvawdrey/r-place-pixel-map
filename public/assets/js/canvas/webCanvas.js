@@ -97,7 +97,7 @@ class pixelatedCanvas {
      */
     fetchMapUpdates() {
         // Get an array of pixels, draw them onto the board
-        
+
     }
 
     /**
@@ -455,6 +455,14 @@ class pixelatedCanvas {
                 y: panEvent.clientY,
             };
         }
+    }
+
+    /**
+     * 
+     */
+    async updateMapFromApi(){
+        await this.map.loadMap();
+        this.drawMapToCanvas();
     }
 
 }

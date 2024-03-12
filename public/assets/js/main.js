@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         document.getElementById("pixelCanvasAppend"),
         currentMap,
     );
-    setInterval(currentMap.loadMap(), 2000);
+    setInterval(currentGame.updateMapFromApi(), 2000);
     const colorDivs = document.querySelectorAll('.color');
     colorDivs.forEach(colorDiv => {
         colorDiv.addEventListener('click', function() {
