@@ -32,14 +32,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
     setInterval(() => currentGame.updateMapFromApi(), 1000);
 
-    const colorDivs = document.querySelectorAll('.color');
-    colorDivs.forEach(colorDiv => {
-        colorDiv.addEventListener('click', function () {
-            const hexCode = this.classList[1].split('-')[1];
-            selectedColor = `#${hexCode}`;
-            console.log('Selected Color:', selectedColor);
-        });
-    });
 });
 
 window.onload = async function () {
@@ -52,6 +44,13 @@ window.onload = async function () {
         const newDiv = document.createElement('div');
         newDiv.className = `color color-${hexColor}`;
         newDiv.style.backgroundColor = `#${hexColor}`;
+
+        newDiv.addEventListener('click', function () {
+            const hexCode = this.classList[1].split('-')[1];
+            selectedColor = `#${hexCode}`;
+            console.log('Selected Color:', selectedColor);
+        });
+
         const gameBar = document.querySelector('.game-bar');
         gameBar.appendChild(newDiv);
     }
