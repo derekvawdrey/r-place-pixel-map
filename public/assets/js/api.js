@@ -12,7 +12,7 @@ class Api {
      * 
      */
     static getPixelMap(mapId) {
-        const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
+        const apiUrl = `http://localhost:4000/api/v1/map/${mapId}`;
 
         return new Promise(async (resolve, reject) => {
             try {
@@ -36,7 +36,7 @@ class Api {
     }
 
     static async sendPixelToServer(pixel, mapId) {
-        const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
+        const apiUrl = `http://localhost:4000/api/v1/map/${mapId}`;
 
         try {
             const response = await fetch(apiUrl, {
@@ -69,16 +69,29 @@ class Api {
      */
     static async handleAuth(username, password) {
         console.log("Authenticating: ", username, " ", password);
-        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/auth';
+        const apiUrl = 'http://localhost:4000/api/v1/user/auth';
 
         return new Promise(async (resolve, reject) => {
             try {
-                const response = await axios.post(apiUrl, { username, password });
-                const authToken = response.data.token;
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (!response.ok) {
+                    reject("Incorrect username and password combination...");
+                    return;
+                }
+
+                const data = await response.json();
+                const authToken = data.token;
                 localStorage.setItem('authToken', authToken);
                 resolve({ username, auth_token: authToken });
             } catch (error) {
-                reject("Incorrect username and password combination... (Try username:user and password:password)");
+                reject("Error during authentication.");
             }
         });
     }
@@ -91,18 +104,53 @@ class Api {
      */
     static async handleRegistration(username, password) {
         console.log("Registering: ", username, " ", password);
-        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/register';
+        const apiUrl = 'http://localhost:4000/api/v1/user/register';
 
         return new Promise(async (resolve, reject) => {
             try {
-                const response = await axios.post(apiUrl, { username, password });
-                const authToken = response.data.token;
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (!response.ok) {
+                    reject("Registration failed.");
+                    return;
+                }
+
+                const data = await response.json();
+                const authToken = data.token;
                 localStorage.setItem('authToken', authToken);
                 resolve({ username, auth_token: authToken });
+            } catch (error) {
+                reject("Error during registration.");
+            }
+        });
+    }
+
+
+    static async loadRandomColors() {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await fetch("https://www.colr.org/json/scheme/random", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+
+                const colors = response.schemes[0].colors;
+                resolve(colors);
+
             } catch (error) {
                 reject(error);
             }
         });
     }
+
+
 
 }
