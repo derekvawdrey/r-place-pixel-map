@@ -43,12 +43,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 window.onload = async function () {
-
-    await Api.loadRandomColors().then((colors) => {
-        colors.forEach((color) => {
-            appendColorDivToGameBar(color);
+    for(let i = 0; i < 15; i++){
+        await Api.loadRandomColors().then((colors) => {
+            colors.forEach((color) => {
+                appendColorDivToGameBar(color);
+            });
         });
-    });
+    }
     function appendColorDivToGameBar(hexColor) {
         const newDiv = document.createElement('div');
         newDiv.className = `color color-${hexColor}`;

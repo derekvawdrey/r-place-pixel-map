@@ -12,7 +12,7 @@ class Api {
      * 
      */
     static getPixelMap(mapId) {
-        const apiUrl = `http://localhost:4000/api/v1/map/${mapId}`;
+        const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
 
         return new Promise(async (resolve, reject) => {
             try {
@@ -36,7 +36,7 @@ class Api {
     }
 
     static async sendPixelToServer(pixel, mapId) {
-        const apiUrl = `http://localhost:4000/api/v1/map/${mapId}`;
+        const apiUrl = `https://startup.pixelatedplace.com/api/v1/map/${mapId}`;
 
         try {
             const response = await fetch(apiUrl, {
@@ -69,7 +69,7 @@ class Api {
      */
     static async handleAuth(username, password) {
         console.log("Authenticating: ", username, " ", password);
-        const apiUrl = 'http://localhost:4000/api/v1/user/auth';
+        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/auth';
 
         return new Promise(async (resolve, reject) => {
             try {
@@ -104,7 +104,7 @@ class Api {
      */
     static async handleRegistration(username, password) {
         console.log("Registering: ", username, " ", password);
-        const apiUrl = 'http://localhost:4000/api/v1/user/register';
+        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/register';
 
         return new Promise(async (resolve, reject) => {
             try {
@@ -131,19 +131,22 @@ class Api {
         });
     }
 
-
+    /**
+     * Puts random colors into the game bar
+     * @returns Promise
+     */
     static async loadRandomColors() {
         return new Promise(async (resolve, reject) => {
             try {
-                const response = await fetch("https://www.colr.org/json/scheme/random", {
+                const response = await fetch("https://www.thecolorapi.com/random?format=json", {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 })
 
-                const colors = response.schemes[0].colors;
-                resolve(colors);
+                const color = response.hex.clean;
+                resolve(color);
 
             } catch (error) {
                 reject(error);

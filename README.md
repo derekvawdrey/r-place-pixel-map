@@ -51,7 +51,7 @@ canvas to make sure the style works well on all devices and looks decent (I know
 - Map now updates automatically, so inputs from different people will now be seen live
 - backend serves JWT tokens for a user (although they currently aren't used)
 - Frontend calls all backend points.
-- A 3rd party api call is implemented to pull random color schemes for you to use. These color schemes will display in the "game-bar" on the right side of the screen
+- A 3rd party api call is implemented to pull random colors for you to use. These colors will display in the "game-bar" on the right side of the screen
 - Things to note: THIS THING SUCKS ON IOs. Safari is garbage, and should be destroyed.
 
 
