@@ -1,7 +1,7 @@
 const tempMap = require("./helpers/generatePremadeMap");
 const Pixel = require("./models/pixel");
 const pixelHelper = require("./helpers/pixelHelper");
-var map = tempMap.generateTempMap("largeMeatWizards");
+var map = tempMap.generateTempMap("pixelsForNewMap");
 
 
 /**

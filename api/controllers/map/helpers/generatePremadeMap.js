@@ -1,8 +1,6 @@
 const storedPixelMaps = require("./storedPixelMap");
 const { Pixel } = require('../models/pixel');
 
-let map = generateTempMap("largeMeatWizards");
-
 function generateTempMap(mapId){
     let map = [];
     let pixelToMap = getMapByMapId(mapId);
