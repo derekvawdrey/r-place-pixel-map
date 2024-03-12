@@ -3,8 +3,8 @@
 const http = require('http');
 const app = require('./api/app');
 
-const appPort = process.env.Port || 3000;
-app.set('port', appPort);
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
+app.set('port', port);
 
 http.createServer(app).listen(
     appPort,
