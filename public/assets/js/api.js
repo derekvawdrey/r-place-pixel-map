@@ -144,7 +144,6 @@ class Api {
                     credentials: "same-origin",
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authToken}`
                     },
                 });
                 console.log(response);
