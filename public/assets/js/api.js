@@ -18,6 +18,7 @@ class Api {
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
+                    credentials: "same-origin",
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -41,6 +42,7 @@ class Api {
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
+                credentials: "same-origin",
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -75,6 +77,7 @@ class Api {
             try {
                 const response = await fetch(apiUrl, {
                     method: 'POST',
+                    credentials: "same-origin",
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -108,6 +111,7 @@ class Api {
             try {
                 const response = await fetch(apiUrl, {
                     method: 'POST',
+                    credentials: "same-origin",
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -137,7 +141,7 @@ class Api {
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
-                    credentials: "same-origin"
+                    credentials: "same-origin",
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${authToken}`
@@ -162,6 +166,7 @@ class Api {
             try {
                 const response = await fetch("https://www.thecolorapi.com/random?format=json", {
                     method: 'GET',
+                    credentials: "same-origin",
                     headers: {
                         'Content-Type': 'application/json',
                     },
