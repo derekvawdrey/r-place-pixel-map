@@ -29,7 +29,6 @@ class PixelatedMap{
             this.map = await Api.getPixelMap(this.mapId);
             this.width = this.map[0].length;
             this.height = this.map.length;
-            console.log("Map loaded successfully:", this.map);
         } catch (error) {
             console.error("Error loading map:", error);
         }
