@@ -7,6 +7,14 @@ let combos = {};
 combos["demoUser"] = "demoPassword";
 
 
+const setAuthCookie = (res, authToken) => {
+  res.cookie('token', authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
+
 /**
  * Provided with a username and password, the user will be authenticated and given a JWT
  * @param {*} req 

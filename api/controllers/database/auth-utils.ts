@@ -8,15 +8,16 @@ const bcrypt = require('bcrypt');
 const userCollection = client.collection("user");
 
 /**
- * Takes a username and password and if correct returns a User model, if not returns null
+ * Takes a username and password and if correct returns a AuthToken
+ * if not returns null
  * @param username 
  * @param password 
  * @returns 
  */
-const auth = (username, password) : User => {
+const auth = (username, password) : AuthToken | null => {
     const token = jwt.sign({ username: username }, config.secret_key, { expiresIn: '1m' });
     
-    return new User(username, token);
+    return new AuthToken();
 }
 
 /**
@@ -25,14 +26,10 @@ const auth = (username, password) : User => {
  * @param password 
  * @returns 
  */
-const register = (username, password) => {
+const register = (username, password) : AuthToken | null => {
     const token = jwt.sign({ username: username }, config.secret_key, { expiresIn: '1m' });
     // If already exists return 409
-    return new User(username, token);
-}
-
-const updateJwtToken = (user:User) => {
-    
+    return true;
 }
 
 /**
@@ -42,6 +39,16 @@ const updateJwtToken = (user:User) => {
  */
 function userExists(username) : boolean {
     return userCollection.findOne({ username: username });
+}
+
+/**
+ * Given a password, encrypts it to store in database
+ * @param password 
+ * @returns 
+ */
+async function encryptPassword(password: String){
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    return encryptedPassword;
 }
 
 module.exports = {auth, register};
