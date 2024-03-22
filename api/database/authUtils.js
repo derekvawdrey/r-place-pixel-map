@@ -75,7 +75,7 @@ function getUser(username) {
  */
 const createUser = async (username, password) => {
     try {
-        const hashedPassword = encryptPassword(password);
+        const hashedPassword =  await bcrypt.hash(password, 10);
         const newAuthToken = new AuthToken(uuid.v4());
         const newUser = new User(username, hashedPassword, newAuthToken);
 
@@ -101,16 +101,6 @@ const isAuthenticated = async (authToken) => {
         return true;
     }
     return false;
-}
-
-/**
- * Given a password, encrypts it to store in database
- * @param password 
- * @returns 
- */
-async function encryptPassword(password){
-    const encryptedPassword = await bcrypt.hash(password, 10);
-    return encryptedPassword;
 }
 
 module.exports = {authUser, registerUser, getUserByToken, isAuthenticated};
