@@ -74,10 +74,12 @@ const register = async (req, res) => {
  */
 const getUser = async (req, res) => {
   const authToken = req.cookies['token'];
-  const user = getUserByToken(authToken);
-  if (user) {
-    res.send({ username: user.username });
-    return;
+  if(authToken){
+    const user = getUserByToken(authToken);
+    if (user) {
+      res.send({ username: user.username });
+      return;
+    }
   }
   res.status(401).send({ msg: 'Unauthorized' });
 };

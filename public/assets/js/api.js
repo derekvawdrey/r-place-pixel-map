@@ -137,8 +137,10 @@ class Api {
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
+                    credentials: "same-origin"
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
                     },
                 });
                 console.log(response);
