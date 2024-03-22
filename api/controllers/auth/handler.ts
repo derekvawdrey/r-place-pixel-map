@@ -1,5 +1,5 @@
-import { AuthToken } from "../database/authToken";
-import { authUser, registerUser } from "../database/authUtils"
+import { AuthToken } from "../../database/authToken";
+import { authUser, registerUser } from "../../database/authUtils"
 
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = "SUSSYBAKA";
