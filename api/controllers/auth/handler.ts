@@ -10,8 +10,8 @@ const SECRET_KEY = "SUSSYBAKA";
  * @param authToken 
  * @returns boolean
  */
-const setAuthCookie = (res, authToken:AuthToken | null) : boolean=> {
-  if(authToken){
+const setAuthCookie = (res, authToken: AuthToken | null): boolean => {
+  if (authToken) {
     res.cookie('token', authToken.token, {
       secure: true,
       httpOnly: true,
@@ -31,16 +31,16 @@ const authenticate = async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   try {
-      const authToken = await authUser(username, password);
-      const authenticated = setAuthCookie(res, authToken);
-      if (authenticated) {
-          res.status(200).send("Authentication successful.");
-      } else {
-          res.status(401).send("Authentication failed.");
-      }
+    const authToken = await authUser(username, password);
+    const authenticated = setAuthCookie(res, authToken);
+    if (authenticated) {
+      res.status(200).send("Authentication successful.");
+    } else {
+      res.status(401).send("Username and password combination incorrect");
+    }
   } catch (error) {
-      console.error("Error during authentication:", error);
-      res.status(500).send("Internal server error.");
+    console.error("Error during authentication:", error);
+    res.status(500).send("Internal server error.");
   }
 };
 
@@ -50,9 +50,21 @@ const authenticate = async (req, res) => {
  * @param {*} res 
  * @returns 
  */
-const register = (req, res) => {
-    
-    res.json({ message: 'User registered successfully', token:token });
+const register = async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  try {
+    const authToken = await registerUser(username, password);
+    const authenticated = setAuthCookie(res, authToken);
+    if (authenticated) {
+      res.status(200).send("Registration successful.");
+    } else {
+      res.status(401).send("Registration failed.");
+    }
+  } catch (error) {
+    console.error("Error during authentication:", error);
+    res.status(500).send("Internal server error.");
+  }
 };
 
-module.exports = {authenticate, register};
+module.exports = { authenticate, register };

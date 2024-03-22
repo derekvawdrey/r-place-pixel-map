@@ -3,7 +3,7 @@ class User {
     authToken;
     password;
 
-    constructor(username, authToken){
+    constructor(username, password, authToken){
         this.username = username;
         this.authToken = authToken;
         this.password = password;

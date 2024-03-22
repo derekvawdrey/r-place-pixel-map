@@ -6,6 +6,7 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 
 const userCollection = client.db("auth").collection("user");
 
@@ -33,22 +34,31 @@ const authUser = async (username, password) : Promise<AuthToken | null> => {
 };
 
 /**
- * 
+ * Registers a new user with the provided username and password
  * @param username 
  * @param password 
- * @returns 
+ * @returns Promise<AuthToken | null>
  */
 const registerUser = async (username, password) : Promise<AuthToken | null> => {
-    const user = await getUser(username);
-    if(user){
-
+    try {
+        const existingUser = await getUser(username);
+        if (existingUser) {
+            throw new Error("User already exists");
+        } else {
+            const newUser = await createUser(username, password);
+            if (newUser && newUser.authToken && newUser.authToken.token) {
+                return new AuthToken(newUser.authToken.token);
+            }
+            return null;
+        }
+    } catch (error) {
+        console.error("Error during user registration:", error);
+        throw new Error("Internal server error.");
     }
-
-    return true;
-}
+};
 
 /**
- * 
+ * Checks if the user is in the database or not
  * @param username 
  * @returns User
  */
@@ -56,9 +66,26 @@ function getUser(username) : User | null {
     return userCollection.findOne({ username: username });
 }
 
-function createUser() {
+/**
+ * Creates a new user with the provided username and password
+ * @param username 
+ * @param password 
+ * @returns Promise<User | null>
+ */
+const createUser = async (username, password) : Promise<User | null> => {
+    try {
+        const hashedPassword = encryptPassword(password);
+        const newAuthToken = new AuthToken(uuid.v4());
+        const newUser = new User(username, hashedPassword, newAuthToken);
 
-}
+        await userCollection.insertOne(newUser);
+
+        return newUser;
+    } catch (error) {
+        console.error("Error creating user:", error);
+        throw new Error("Failed to create user");
+    }
+};
 
 /**
  * Given a password, encrypts it to store in database
