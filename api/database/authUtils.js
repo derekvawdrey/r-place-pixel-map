@@ -78,7 +78,7 @@ const createUser = async (username, password) => {
         const hashedPassword =  await bcrypt.hash(password, 10);
         const newAuthToken = new AuthToken(uuid.v4());
         const newUser = new User(username, hashedPassword, newAuthToken);
-
+        console.log(hashedPassword);
         await userCollection.insertOne(newUser);
 
         return newUser;

@@ -33,7 +33,6 @@ function login(){
 
     let response = Api.handleAuth(username,password);
     response.then((data)=>{
-        console.log(data);
         errorMessageElement.innerText = "";
         closeModal();
         window.location.reload();

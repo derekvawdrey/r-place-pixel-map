@@ -89,8 +89,7 @@ class Api {
                     return;
                 }
 
-                const data = await response.json();
-                resolve({data});
+                resolve("");
             } catch (error) {
                 reject("Error during authentication.");
             }
@@ -123,8 +122,7 @@ class Api {
                     return;
                 }
 
-                const data = await response.json();
-                resolve({data});
+                resolve("");
             } catch (error) {
                 reject(error);
             }
@@ -146,9 +144,13 @@ class Api {
                         'Content-Type': 'application/json',
                     },
                 });
-                const data = await response.json();
-                console.log(data);
-                resolve(data);
+
+                if (!response.ok) {
+                    reject("Grabbing iser data failed.");
+                    return;
+                }
+
+                resolve("");
             }catch (error) {
                 reject(error);
             }
