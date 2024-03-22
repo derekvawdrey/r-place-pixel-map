@@ -1,5 +1,4 @@
-import { AuthToken } from "./authToken";
-
+const { AuthToken } = require("./authToken");
 const jwt = require('jsonwebtoken');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
