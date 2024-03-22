@@ -1,11 +1,11 @@
 class User {
     username;
-    jwt;
+    authToken;
     password;
 
-    constructor(username, jwt){
+    constructor(username, authToken){
         this.username = username;
-        this.jwt = jwt;
+        this.authToken = authToken;
         this.password = password;
     }
 }
