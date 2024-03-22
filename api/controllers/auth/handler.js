@@ -10,7 +10,7 @@ const SECRET_KEY = "SUSSYBAKA";
  * @param authToken 
  * @returns boolean
  */
-const setAuthCookie = (res, authToken: AuthToken | null): boolean => {
+const setAuthCookie = (res, authToken) => {
   if (authToken) {
     res.cookie('token', authToken.token, {
       secure: true,

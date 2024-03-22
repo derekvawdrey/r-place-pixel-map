@@ -15,9 +15,9 @@ const userCollection = client.db("auth").collection("user");
  * if not returns null
  * @param username 
  * @param password 
- * @returns Promise<AuthToken | null>
+ * @returns AuthToken | null
  */
-const authUser = async (username, password) : Promise<AuthToken | null> => {
+const authUser = async (username, password) => {
     try {
         const user = await getUser(username);
         if (user && user.password) {
@@ -37,9 +37,9 @@ const authUser = async (username, password) : Promise<AuthToken | null> => {
  * Registers a new user with the provided username and password
  * @param username 
  * @param password 
- * @returns Promise<AuthToken | null>
+ * @returns AuthToken | null
  */
-const registerUser = async (username, password) : Promise<AuthToken | null> => {
+const registerUser = async (username, password) => {
     try {
         const existingUser = await getUser(username);
         if (existingUser) {
@@ -62,7 +62,7 @@ const registerUser = async (username, password) : Promise<AuthToken | null> => {
  * @param username 
  * @returns User
  */
-function getUser(username) : User | null {
+function getUser(username) {
     return userCollection.findOne({ username: username });
 }
 
@@ -72,7 +72,7 @@ function getUser(username) : User | null {
  * @param password 
  * @returns Promise<User | null>
  */
-const createUser = async (username, password) : Promise<User | null> => {
+const createUser = async (username, password) => {
     try {
         const hashedPassword = encryptPassword(password);
         const newAuthToken = new AuthToken(uuid.v4());
@@ -92,7 +92,7 @@ const createUser = async (username, password) : Promise<User | null> => {
  * @param password 
  * @returns 
  */
-async function encryptPassword(password: String){
+async function encryptPassword(password){
     const encryptedPassword = await bcrypt.hash(password, 10);
     return encryptedPassword;
 }
