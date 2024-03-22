@@ -1,8 +1,11 @@
 const jwt = require('jsonwebtoken');
+
+
 const SECRET_KEY = "SUSSYBAKA";
 
 let combos = {};
 combos["demoUser"] = "demoPassword";
+
 
 /**
  * Provided with a username and password, the user will be authenticated and given a JWT
