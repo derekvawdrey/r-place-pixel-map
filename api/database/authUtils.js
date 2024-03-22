@@ -1,4 +1,5 @@
 const { AuthToken } = require("./authToken");
+const { User } = require("./userModel");
 const jwt = require('jsonwebtoken');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
