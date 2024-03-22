@@ -3,6 +3,7 @@
     "express": "^4.18.3",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.5.0",
     "sass": "^1.70.0"
   },
   "name": "startup",
