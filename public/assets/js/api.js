@@ -146,8 +146,9 @@ class Api {
                         'Content-Type': 'application/json',
                     },
                 });
-                console.log(response);
-                resolve(response);
+                const data = await response.json();
+                console.log(data);
+                resolve(data);
             }catch (error) {
                 reject(error);
             }
