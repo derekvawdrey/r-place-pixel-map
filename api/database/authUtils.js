@@ -21,6 +21,7 @@ const authUser = async (username, password) => {
     try {
         const user = await getUser(username);
         if (user && user.password) {
+            console.log(password, "---", user.password);
             const passwordMatch = await bcrypt.compare(password, user.password);
             if (passwordMatch && user.authToken && user.authToken.token) {
                 return new AuthToken(user.authToken.token);
