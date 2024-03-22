@@ -5,7 +5,8 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
-    "sass": "^1.70.0"
+    "sass": "^1.70.0",
+    "uuid": "^9.0.1"
   },
   "name": "startup",
   "description": "This project will be a replica of r/place with a twist. In this version, users will engage in an RPG-like experience, starting with 500 pixels. As they place pixels on the canvas, they gain experience points. The twist? Users can level up, unlock special abilities, and engage in pixel battles. It's a blend of collaborative art creation and individual progression.",
