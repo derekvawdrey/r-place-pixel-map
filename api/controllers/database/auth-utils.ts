@@ -14,10 +14,14 @@ const userCollection = client.collection("user");
  * @param password 
  * @returns 
  */
-const auth = (username, password) : AuthToken | null => {
-    const token = jwt.sign({ username: username }, config.secret_key, { expiresIn: '1m' });
+const auth = async (username, password) : Promise<AuthToken | null> => {
+    //const token = jwt.sign({ username: username }, config.secret_key, { expiresIn: '1m' });
+    const user = await getUser(username);
+    if(user){
+        return new AuthToken();
+    }
+    return null;
     
-    return new AuthToken();
 }
 
 /**
@@ -26,7 +30,7 @@ const auth = (username, password) : AuthToken | null => {
  * @param password 
  * @returns 
  */
-const register = (username, password) : AuthToken | null => {
+const register = async (username, password) : Promise<AuthToken | null> => {
     const token = jwt.sign({ username: username }, config.secret_key, { expiresIn: '1m' });
     // If already exists return 409
     return true;
@@ -35,9 +39,9 @@ const register = (username, password) : AuthToken | null => {
 /**
  * 
  * @param username 
- * @returns boolean
+ * @returns User
  */
-function userExists(username) : boolean {
+function getUser(username) : User | null {
     return userCollection.findOne({ username: username });
 }
 
