@@ -85,6 +85,21 @@ const createUser = async (username, password) => {
         throw new Error("Failed to create user");
     }
 };
+/**
+ * Get user by Auth token
+ * @param {*} authToken 
+ */
+const getUserByToken = async (authToken) => {
+    const user = await collection.findOne({ token: authToken });
+    return user;
+}
+
+const isAuthenticated = async (authToken) => {
+    if(getUserByToken(authToken)){
+        return true;
+    }
+    return false;
+}
 
 /**
  * Given a password, encrypts it to store in database
@@ -96,4 +111,4 @@ async function encryptPassword(password){
     return encryptedPassword;
 }
 
-module.exports = {authUser, registerUser};
+module.exports = {authUser, registerUser, getUserByToken, isAuthenticated};

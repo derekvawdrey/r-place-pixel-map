@@ -1,6 +1,5 @@
 const {AuthToken} = require("../../database/authToken");
-const { authUser, registerUser } = require("../../database/authUtils");
-
+const { authUser, registerUser, getUserByToken } = require("../../database/authUtils");
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = "SUSSYBAKA";
 
@@ -67,4 +66,20 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { authenticate, register };
+/**
+ * Temporarily registers user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const getUser = async (req, res) => {
+  const authToken = req.cookies['token'];
+  const user = getUserByToken(authToken);
+  if (user) {
+    res.send({ username: user.username });
+    return;
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
+};
+
+module.exports = { authenticate, register, getUser };
