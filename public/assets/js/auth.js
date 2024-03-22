@@ -35,8 +35,6 @@ function login(){
     response.then((data)=>{
         console.log(data);
         errorMessageElement.innerText = "";
-        setUserToken(data.auth_token);
-        setUsername(data.username);
         closeModal();
         window.location.reload();
     }).catch((error)=>{
@@ -51,14 +49,14 @@ async function register(){
     let errorMessageElement = document.getElementById("register-error");
 
     let response = Api.handleRegistration(username,password);
-    response.then((data)=>{
-        console.log(data);
-        setUserToken(data.auth_token);
-        setUsername(data.username);
+    response.then(()=>{
         errorMessageElement.innerText = "";
         closeModal();
         window.location.reload();
-    })
+    }).catch((error)=>{
+        console.log(error);
+        errorMessageElement.innerText = error;
+    });
 };
 
 function logout(){
@@ -68,10 +66,6 @@ function logout(){
 }
 
 function isLoggedIn(){
-    let loggedIn = false;
-    if(getUserToken()){
-        loggedIn = getUserToken().length>0 ? true : false;
-        if(loggedIn)console.log("User is - ", getUserToken());
-    }
+    
     return loggedIn;
 }

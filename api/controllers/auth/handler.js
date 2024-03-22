@@ -35,7 +35,7 @@ const authenticate = async (req, res) => {
     if (authenticated) {
       res.status(200).send("Authentication successful.");
     } else {
-      res.status(401).send("Username and password combination incorrect");
+      res.status(401).send("incorrect Username and password combination");
     }
   } catch (error) {
     console.error("Error during authentication:", error);
@@ -58,7 +58,7 @@ const register = async (req, res) => {
     if (authenticated) {
       res.status(200).send("Registration successful.");
     } else {
-      res.status(401).send("Registration failed.");
+      res.status(401).send("That username already exists.");
     }
   } catch (error) {
     console.error("Error during authentication:", error);

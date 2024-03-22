@@ -87,9 +87,7 @@ class Api {
                 }
 
                 const data = await response.json();
-                const authToken = data.token;
-                localStorage.setItem('authToken', authToken);
-                resolve({ username, auth_token: authToken });
+                resolve({data});
             } catch (error) {
                 reject("Error during authentication.");
             }
@@ -122,14 +120,37 @@ class Api {
                 }
 
                 const data = await response.json();
-                const authToken = data.token;
-                localStorage.setItem('authToken', authToken);
-                resolve({ username, auth_token: authToken });
+                resolve({data});
             } catch (error) {
-                reject("Error during registration.");
+                reject(error);
             }
         });
     }
+
+    /**
+     * Get user data from auth token
+     */
+    static async grabUserData(){
+        console.log("Registering: ", username, " ", password);
+        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/user';
+
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                console.log(response);
+                resolve(response);
+            }catch (error) {
+                reject(error);
+            }
+        });
+        
+    }
+
 
     /**
      * Puts random colors into the game bar
