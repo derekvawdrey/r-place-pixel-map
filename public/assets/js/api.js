@@ -131,7 +131,6 @@ class Api {
      * Get user data from auth token
      */
     static async grabUserData(){
-        console.log("Registering: ", username, " ", password);
         const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/user';
 
         return new Promise(async (resolve, reject) => {
