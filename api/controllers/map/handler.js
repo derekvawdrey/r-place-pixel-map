@@ -2,7 +2,7 @@ const tempMap = require("./helpers/generatePremadeMap");
 const Pixel = require("./models/pixel");
 const pixelHelper = require("./helpers/pixelHelper");
 var map = tempMap.generateTempMap("pixelsForNewMap");
-
+const {isAuthenticated} = require("../../database/authUtils");
 
 /**
  * 
@@ -20,21 +20,25 @@ const grabMap = async (req, res) => {
  * @param {*} res 
  */
 const drawPixel = async (req, res) => {
-    try {
-        const { x, y, r, g, b } = req.body;
-        
-        if (pixelHelper.isValidPixelData(x, y, r, g, b)) {
-            const pixel = new Pixel.Pixel(x, y, r, g, b);
-            console.log("Valid - ", x,y,r,g,b);
-            map[x][y] = pixel;
-            res.send(map);
-        } else {
-            console.log("Invalid - ", x,y,r,g,b);
-            res.status(400).send("Invalid pixel data");
+    if(isAuthenticated){
+        try {
+            const { x, y, r, g, b } = req.body;
+            
+            if (pixelHelper.isValidPixelData(x, y, r, g, b)) {
+                const pixel = new Pixel.Pixel(x, y, r, g, b);
+                console.log("Valid - ", x,y,r,g,b);
+                map[x][y] = pixel;
+                res.send(map);
+            } else {
+                console.log("Invalid - ", x,y,r,g,b);
+                res.status(400).send("Invalid pixel data");
+            }
+        } catch (error) {
+            console.error("Error drawing pixel:", error);
+            res.status(500).send("Internal Server Error");
         }
-    } catch (error) {
-        console.error("Error drawing pixel:", error);
-        res.status(500).send("Internal Server Error");
+    }else{
+        res.status(500).send("Unauthenticated");
     }
 }
 
