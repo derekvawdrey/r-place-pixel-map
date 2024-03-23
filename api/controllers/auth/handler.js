@@ -33,13 +33,13 @@ const authenticate = async (req, res) => {
     const authToken = await authUser(username, password);
     const authenticated = setAuthCookie(res, authToken);
     if (authenticated) {
-      res.status(200).send("Authentication successful.");
+      res.status(200).send({ msg: "Authentication successful" });
     } else {
-      res.status(401).send("incorrect Username and password combination");
+      res.status(401).send({ error: "Incorrect username and password combination" });
     }
   } catch (error) {
     console.error("Error during authentication:", error);
-    res.status(500).send("Internal server error.");
+    res.status(500).send({ error: "Internal Server Error" });
   }
 };
 
@@ -56,13 +56,13 @@ const register = async (req, res) => {
     const authToken = await registerUser(username, password);
     const authenticated = setAuthCookie(res, authToken);
     if (authenticated) {
-      res.status(200).send("Registration successful.");
+      res.status(200).send({ msg: "User created" });
     } else {
-      res.status(401).send("That username already exists.");
+      res.status(401).send({ error: "That username already exists" });
     }
   } catch (error) {
     console.error("Error during authentication:", error);
-    res.status(500).send("Internal server error.");
+    res.status(500).send({ error: "Internal Server Error" });
   }
 };
 
@@ -95,7 +95,7 @@ const getUser = async (req, res) => {
  */
 const logout = async (req, res) => {
   setAuthCookie(res, "NOT VALID TOKEN");
-  res.status(200).send("Logged out");
+  res.status(200).send({ msg: "Logged out" });
 };
 
 module.exports = { authenticate, register, getUser, logout };

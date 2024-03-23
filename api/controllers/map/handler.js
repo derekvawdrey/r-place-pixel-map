@@ -35,14 +35,14 @@ const drawPixel = async (req, res) => {
                 const pixel = new Pixel.Pixel(x, y, r, g, b);
                 console.log("Valid - ", x,y,r,g,b);
                 updatePixel(pixel);
-                res.status(200).send("Pixel Updated");
+                res.status(200).send({ msg: "Pixel updated" });
             } else {
                 console.log("Invalid - ", x,y,r,g,b);
-                res.status(400).send("Invalid pixel data");
+                res.status(400).send({ error: "Invalid Pixel Data" });
             }
         } catch (error) {
             console.error("Error drawing pixel:", error);
-            res.status(500).send("Internal Server Error");
+            res.status(500).send({ error: "Internal Server Error" });
         }
     }else{
         res.status(500).send("Unauthenticated");
@@ -54,7 +54,7 @@ const drawPixel = async (req, res) => {
  */
 const initMap = async(req, res) => {
     await initBoard();
-    res.status(200).send("Initalized Board");
+    res.status(200).send({ msg: "Initalized Board" });
 }
 
 
