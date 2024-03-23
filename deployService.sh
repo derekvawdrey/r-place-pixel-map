@@ -40,7 +40,7 @@ printf "\n----> Deploy the service on the target\n"
 ssh -i "$key" ubuntu@$hostname << ENDSSH
 bash -i
 cd services/${service}
-npm install
+npm install serve
 pm2 restart ${service}
 ENDSSH
 
