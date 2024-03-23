@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
 });
+
 function updateProfileText(){
     let response = Api.grabUserData();
     response.then((username)=>{
+        console.log(username);
         let loginLink = document.getElementById("loginLink");
         let registerLink = document.getElementById("registerLink");
         let usernameText = document.getElementById("username");
@@ -67,6 +69,6 @@ async function register(){
 };
 
 function logout(){
-    
+
     window.location.reload();
 }

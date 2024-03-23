@@ -151,6 +151,7 @@ class Api {
                 }
     
                 const data = await response.json(); // Corrected method name
+                console.log(data);
                 resolve(data.username);
             } catch (error) {
                 reject(error);
