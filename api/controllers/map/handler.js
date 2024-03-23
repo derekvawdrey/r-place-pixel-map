@@ -20,7 +20,8 @@ const grabMap = async (req, res) => {
  * @param {*} res 
  */
 const drawPixel = async (req, res) => {
-    if(isAuthenticated()){
+    const authToken = req.cookies['token'];
+    if(isAuthenticated(authToken)){
         try {
             const { x, y, r, g, b } = req.body;
             
