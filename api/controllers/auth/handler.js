@@ -76,6 +76,7 @@ const getUser = async (req, res) => {
   const authToken = req.cookies['token'];
   if(authToken){
     const user = await getUserByToken(authToken);
+    console.log(user);
     if (user) {
       console.log(user.username);
       console.log(user);
