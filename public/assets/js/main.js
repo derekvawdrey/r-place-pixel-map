@@ -58,7 +58,7 @@ window.onload = async function () {
 
 };
 
-const ws = new WebSocket('ws://startup.pixelatedplace.com/:4000');
+const ws = new WebSocket('wss://startup.pixelatedplace.com/:4000');
 
 ws.onopen = function() {
   console.log('Connected to WebSocket server');
