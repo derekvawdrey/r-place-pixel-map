@@ -397,9 +397,9 @@ class pixelatedCanvas {
      * @param {PIXI.Point} zoomPoint - The point to zoom in on
      */
     zoomIn(factor, zoomPoint) {
-        this.zoom.x *= factor;
-        this.zoom.y *= factor;
-        this.updateZoom(zoomPoint);
+        // this.zoom.x *= factor;
+        // this.zoom.y *= factor;
+        // this.updateZoom(zoomPoint);
     }
 
     /**
@@ -408,9 +408,9 @@ class pixelatedCanvas {
      * @param {PIXI.Point} zoomPoint - The point to zoom out from
      */
     zoomOut(factor, zoomPoint) {
-        this.zoom.x /= factor;
-        this.zoom.y /= factor;
-        this.updateZoom(zoomPoint);
+        // this.zoom.x /= factor;
+        // this.zoom.y /= factor;
+        // this.updateZoom(zoomPoint);
     }
 
     /**
