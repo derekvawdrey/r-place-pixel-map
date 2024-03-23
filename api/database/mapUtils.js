@@ -34,7 +34,7 @@ const initBoard = async () => {
     //         mapCollection.insertOne(pixel);
     //     }
     // }
-    mapCollectionData.insertOne({ width: MAP_WIDTH, height: MAP_HEIGHT });
+    //mapCollectionData.insertOne({ width: MAP_WIDTH, height: MAP_HEIGHT });
 }
 
 /**
