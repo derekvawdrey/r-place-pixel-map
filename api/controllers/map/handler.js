@@ -20,7 +20,7 @@ const grabMap = async (req, res) => {
  * @param {*} res 
  */
 const drawPixel = async (req, res) => {
-    if(isAuthenticated){
+    if(isAuthenticated()){
         try {
             const { x, y, r, g, b } = req.body;
             
