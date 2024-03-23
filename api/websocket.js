@@ -15,6 +15,7 @@ const setupWebSocket = (server) => {
 
     wss.on('connection', (ws) => {
         const connection = { id: ++id, alive: true, ws: ws };
+        console.log("Connection established!!!");
         connections.push(connection);
 
         // Forward messages to everyone except the sender

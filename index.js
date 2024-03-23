@@ -15,3 +15,4 @@ server.listen(port, () => console.log(`Node app running at localhost:${port}`));
 
 // Setup WebSocket
 setupWebSocket(server);
+
