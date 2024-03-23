@@ -15,7 +15,7 @@ const getBoard = async () => {
     try {
         const pixels = await mapCollection.find({}).toArray();
         const data = await mapCollectionData.find({}).toArray();
-        return {pixels, data };
+        return {pixels, data};
     } catch (error) {
         console.error("Error occurred while fetching pixels:", error);
         throw error;
@@ -26,14 +26,14 @@ const getBoard = async () => {
  * This is where we initalize the board with pixels
  */
 const initBoard = async () => {
-    const MAP_WIDTH = 100;
-    const MAP_HEIGHT = 100;
-    for(let x = 0; x < MAP_WIDTH; x++){
-        for(let y = 0; y < MAP_HEIGHT; y++){
-            let pixel = new Pixel(x,y,255,255,255);
-            mapCollection.insertOne(pixel);
-        }
-    }
+    // const MAP_WIDTH = 100;
+    // const MAP_HEIGHT = 100;
+    // for(let x = 0; x < MAP_WIDTH; x++){
+    //     for(let y = 0; y < MAP_HEIGHT; y++){
+    //         let pixel = new Pixel(x,y,255,255,255);
+    //         mapCollection.insertOne(pixel);
+    //     }
+    // }
     mapCollectionData.insertOne({width:MAX_WIDTH, height:MAP_HEIGHT});
 }
 
