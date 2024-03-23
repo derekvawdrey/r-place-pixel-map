@@ -64,7 +64,7 @@ setInterval(() => {
     });
 }, 10000);
 
-function getConnections(){
+const getConnections = () =>{
     return connections;
 }
 
