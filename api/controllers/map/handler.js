@@ -2,7 +2,7 @@ const Pixel = require("./models/pixel");
 const pixelHelper = require("./helpers/pixelHelper");
 const { updatePixel, initBoard, getBoard } = require("../../database/mapUtils");
 const { isAuthenticated } = require("../../database/authUtils");
-const { getConnections } = require("../../../index.js")
+const { getConnections } = require("../../websocket");
 
 /**
  * 
