@@ -29,8 +29,8 @@ class PixelatedMap{
             const response = await Api.getPixelMap(this.mapId);
             console.log(response);
             this.map = response.map;
-            this.width = response.data.width;
-            this.height = response.data.height;
+            this.width = response.data[0].width;
+            this.height = response.data[0].height;
         } catch (error) {
             console.error("Error loading map:", error);
         }
