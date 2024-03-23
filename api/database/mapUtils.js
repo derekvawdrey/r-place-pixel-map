@@ -42,20 +42,22 @@ const initBoard = async () => {
  * @param {Pixel} pixel - The pixel object to update
  */
 const updatePixel = async (pixel) => {
-    try {
-        const filter = { x: pixel.x, y: pixel.y };
-        const updateDoc = {
-            $set: {
-                r: pixel.r,
-                g: pixel.g,
-                b: pixel.b,
-            }
-        };
-        await mapCollection.updateOne(filter, updateDoc);
-        console.log("Pixel updated successfully.");
-    } catch (error) {
-        console.error("Error occurred while updating pixel:", error);
-        throw error;
+    if(loggedIn){
+        try {
+            const filter = { x: pixel.x, y: pixel.y };
+            const updateDoc = {
+                $set: {
+                    r: pixel.r,
+                    g: pixel.g,
+                    b: pixel.b,
+                }
+            };
+            await mapCollection.updateOne(filter, updateDoc);
+            console.log("Pixel updated successfully.");
+        } catch (error) {
+            console.error("Error occurred while updating pixel:", error);
+            throw error;
+        }
     }
 }
 
