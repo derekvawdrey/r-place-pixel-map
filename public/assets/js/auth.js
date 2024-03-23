@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+
+    updateProfileText();
+    
+    
+});
+function updateProfileText(){
     let response = Api.grabUserData();
     response.then((username)=>{
         let loginLink = document.getElementById("loginLink");
@@ -25,10 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         profileLink.classList.add("hidden");
     });
 
-    
-    
-    
-});
+}
+
 
 function login(){
     let username = document.getElementById("login-name").value;
@@ -39,7 +43,7 @@ function login(){
     response.then((data)=>{
         errorMessageElement.innerText = "";
         closeModal();
-        window.location.reload();
+        updateProfileText();
     }).catch((error)=>{
         console.log(error);
         errorMessageElement.innerText = error;
@@ -55,7 +59,7 @@ async function register(){
     response.then(()=>{
         errorMessageElement.innerText = "";
         closeModal();
-        window.location.reload();
+        updateProfileText();
     }).catch((error)=>{
         console.log(error);
         errorMessageElement.innerText = error;
@@ -63,7 +67,6 @@ async function register(){
 };
 
 function logout(){
-    setUserToken("");
-    setUsername("");
+    
     window.location.reload();
 }
