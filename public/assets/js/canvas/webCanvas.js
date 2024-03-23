@@ -94,11 +94,9 @@ class pixelatedCanvas {
         }
 
 
-        for (let col = 0; col < this.map.width; col += 1) {
-            for (let row = 0; row < this.map.height; row += 1) {
-                let pixel = this.map.map[col][row];
+        for (let position = 0; position < this.map.map.length; position += 1) {
+                let pixel = this.map.map[position];
                 this.drawPixel(pixel);
-            }
         }
     }
 

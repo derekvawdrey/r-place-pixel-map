@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("pixelCanvasAppend"),
         currentMap,
     );
-    setInterval(() => currentGame.updateMapFromApi(), 2000);
+    // setInterval(() => currentGame.updateMapFromApi(), 2000);
 
 });
 

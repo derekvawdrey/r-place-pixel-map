@@ -26,24 +26,12 @@ class PixelatedMap{
     async loadMap() {
         console.log("Attempting to load Map - ", this.mapId)
         try {
-            this.map = await Api.getPixelMap(this.mapId);
-            this.width = this.map[0].length;
-            this.height = this.map.length;
+            const response = await Api.getPixelMap(this.mapId);
+            this.map = response.map;
+            this.width = response.data.width;
+            this.height = response.data.height;
         } catch (error) {
             console.error("Error loading map:", error);
         }
-    }
-
-    /**
-     * Position of pixel on map
-     * @param {Number} x 
-     * @param {Number} y 
-     */
-    getPixelAtCoords(x,y){
-        
-    }
-
-    async updateMap(){
-
     }
 }

@@ -1,7 +1,6 @@
-const tempMap = require("./helpers/generatePremadeMap");
 const Pixel = require("./models/pixel");
 const pixelHelper = require("./helpers/pixelHelper");
-var map = tempMap.generateTempMap("pixelsForNewMap");
+const { updatePixel, initBoard, getBoard } = require("../../database/mapUtils");
 const {isAuthenticated} = require("../../database/authUtils");
 
 /**
@@ -11,7 +10,8 @@ const {isAuthenticated} = require("../../database/authUtils");
  * @param {*} res 
  */
 const grabMap = async (req, res) => {
-    res.send(map);
+    let mapData = getBoard();
+    res.send({map:mapData.pixels, data:mapData.data});
 }
 
 /**
@@ -29,8 +29,8 @@ const drawPixel = async (req, res) => {
             if (pixelHelper.isValidPixelData(x, y, r, g, b)) {
                 const pixel = new Pixel.Pixel(x, y, r, g, b);
                 console.log("Valid - ", x,y,r,g,b);
-                map[x][y] = pixel;
-                res.send(map);
+                updatePixel(pixel);
+                res.status(200).send("Pixel Updated");
             } else {
                 console.log("Invalid - ", x,y,r,g,b);
                 res.status(400).send("Invalid pixel data");
@@ -44,7 +44,14 @@ const drawPixel = async (req, res) => {
     }
 }
 
+/**
+ * Initalizes map
+ */
+const initMap = async(req, res) => {
+    initBoard();
+    res.status(200).send("Initalized Board");
+}
 
 
 
-module.exports = { grabMap, drawPixel };
+module.exports = { grabMap, drawPixel, initMap };
