@@ -326,7 +326,7 @@ class pixelatedCanvas {
             const color = hexToRgb(selectedColor);
 
             let newPixel = new Pixel(x, y, color.r, color.g, color.b);
-            this.map.map[x][y] = newPixel;
+            this.map.map[x+y*this.map.height] = newPixel;
             this.drawPixel(newPixel);
 
             Api.sendPixelToServer(newPixel, this.map.mapId);
