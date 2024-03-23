@@ -321,13 +321,15 @@ class pixelatedCanvas {
      * @param {*} y 
      */
     drawPixelToCanvas(x,y){
-        const color = hexToRgb(selectedColor);
+        if(loggedIn){
+            const color = hexToRgb(selectedColor);
 
-        let newPixel = new Pixel(x, y, color.r, color.g, color.b);
-        this.map.map[x][y] = newPixel;
-        this.drawPixel(newPixel);
+            let newPixel = new Pixel(x, y, color.r, color.g, color.b);
+            this.map.map[x][y] = newPixel;
+            this.drawPixel(newPixel);
 
-        Api.sendPixelToServer(newPixel, this.map.mapId);
+            Api.sendPixelToServer(newPixel, this.map.mapId);
+        }
     }
 
 
