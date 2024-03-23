@@ -13,7 +13,7 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen(port, () => console.log(`Node app running at localhost:${port}`));
 
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ noServer: true });
 
 // Handle the protocol upgrade from HTTP to WebSocket
 server.on('upgrade', (request, socket, head) => {
