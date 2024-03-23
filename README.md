@@ -54,6 +54,13 @@ canvas to make sure the style works well on all devices and looks decent (I know
 - A 3rd party api call is implemented to pull random colors for you to use. These colors will display in the "game-bar" on the right side of the screen
 - Things to note: THIS THING SUCKS ON IOs. Safari is garbage, and should be destroyed.
 
+## Things added in Startup Login
+- Users can now register accounts
+- Users can now login to accounts
+- Users can now logout of accounts
+- Map is now connected to the mongodb
+- You must be logged in to draw to the map
+
 
 ## Mock picture
 

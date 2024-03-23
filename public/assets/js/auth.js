@@ -16,13 +16,14 @@ function updateProfileText(){
         let usernameText = document.getElementById("username");
         let logoutLink = document.getElementById("logoutLink");
         console.log("Updating nav");
-        loggedIn = true;
+        
         if(loginLink){
             loginLink.classList.add("hidden");
             registerLink.classList.add("hidden");
 
         }
         if(username){
+            loggedIn = true;
             usernameText.innerText = username;
             profileLink.classList.remove("hidden");
         }
