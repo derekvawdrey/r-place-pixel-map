@@ -94,7 +94,7 @@ const getUser = async (req, res) => {
  * @returns 
  */
 const logout = async (req, res) => {
-  setAuthCookie(res, null);
+  setAuthCookie(res, "NOT VALID TOKEN");
   res.status(200).send("Logged out");
 };
 
