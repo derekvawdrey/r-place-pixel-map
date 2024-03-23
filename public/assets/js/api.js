@@ -133,9 +133,9 @@ class Api {
     /**
      * Get user data from auth token
      */
-    static async grabUserData(){
+    static async grabUserData() {
         const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/user';
-
+    
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await fetch(apiUrl, {
@@ -145,20 +145,19 @@ class Api {
                         'Content-Type': 'application/json',
                     },
                 });
-
+    
                 if (!response.ok) {
-                    reject("Grabbing user data failed.");
-                    return;
+                    throw new Error("Grabbing user data failed.");
                 }
-
-                const data = response.toJson();
+    
+                const data = await response.json(); // Corrected method name
                 resolve(data.username);
-            }catch (error) {
+            } catch (error) {
                 reject(error);
             }
         });
-        
     }
+    
 
 
     /**

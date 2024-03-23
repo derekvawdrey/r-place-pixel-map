@@ -77,6 +77,7 @@ const getUser = async (req, res) => {
   if(authToken){
     const user = getUserByToken(authToken);
     if (user) {
+      console.log(user.username);
       res.send({ username: user.username });
       return;
     }
