@@ -22,7 +22,7 @@ const grabMap = async (req, res) => {
 
 
 const sendPixelToWebsockets = (pixel) => {
-    console.log(connections);
+    console.log(getConnections());
     getConnections().forEach((client)=>{
         client.ws.send(JSON.stringify(pixel)); 
         console.log("Sending pixel", pixel);
