@@ -2,6 +2,7 @@ const Pixel = require("./models/pixel");
 const pixelHelper = require("./helpers/pixelHelper");
 const { updatePixel, initBoard, getBoard } = require("../../database/mapUtils");
 const {isAuthenticated} = require("../../database/authUtils");
+const wss = require("../../../index.js")
 
 /**
  * 
@@ -17,6 +18,16 @@ const grabMap = async (req, res) => {
         console.error("Error occurred while grabbing map:", error);
         res.status(500).send({ error: "Internal Server Error" });
     }
+}
+
+
+const sendPixelToWebsockets = (pixel) => {
+    wss.clients.forEach(function each(client) {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify(pixel)); 
+            console.log("Sending pixel", pixel);
+        }
+    });
 }
 
 /**
@@ -35,6 +46,12 @@ const drawPixel = async (req, res) => {
                 const pixel = new Pixel.Pixel(x, y, r, g, b);
                 console.log("Valid - ", x,y,r,g,b);
                 updatePixel(pixel);
+
+
+                sendPixelToWebsockets(pixel);
+
+
+
                 res.status(200).send({ msg: "Pixel updated" });
             } else {
                 console.log("Invalid - ", x,y,r,g,b);

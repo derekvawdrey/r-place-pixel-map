@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("pixelCanvasAppend"),
         currentMap,
     );
+
     // setInterval(() => currentGame.updateMapFromApi(), 2000);
 
 });
@@ -55,4 +56,22 @@ window.onload = async function () {
         gameBar.appendChild(newDiv);
     }
 
+};
+
+const ws = new WebSocket('ws://startup.pixelatedplace.com/:4000');
+
+ws.onopen = function() {
+  console.log('Connected to WebSocket server');
+};
+
+ws.onmessage = function(event) {
+  console.log('Received message:', event.data);
+};
+
+ws.onclose = function() {
+  console.log('Connection to WebSocket server closed');
+};
+
+ws.onerror = function(error) {
+  console.error('WebSocket error:', error);
 };
