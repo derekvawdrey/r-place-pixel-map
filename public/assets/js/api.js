@@ -117,8 +117,9 @@ class Api {
                     body: JSON.stringify({ username, password }),
                 });
 
+                // TODO: THIS ISN'T ALWAYS CORRECT :P
                 if (!response.ok) {
-                    reject("Registration failed.");
+                    reject("That username already exists");
                     return;
                 }
 
@@ -146,11 +147,12 @@ class Api {
                 });
 
                 if (!response.ok) {
-                    reject("Grabbing iser data failed.");
+                    reject("Grabbing user data failed.");
                     return;
                 }
 
-                resolve("");
+                const data = response.toJson();
+                resolve(data.username);
             }catch (error) {
                 reject(error);
             }

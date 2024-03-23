@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    if(isLoggedIn()){
+    let response = Api.grabUserData();
+    response.then((username)=>{
         let loginLink = document.getElementById("loginLink");
         let registerLink = document.getElementById("registerLink");
         let username = document.getElementById("username");
@@ -12,16 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
         if(username){
-            username.innerText = getUsername();
+            username.innerText = username;
+            profileLink.classList.remove("hidden");
         }
         if(logoutLink){
             logoutLink.classList.remove("hidden");
         }
 
-    }else{
+    }).catch((error)=>{
         let profileLink = document.getElementById("profileLink");
         profileLink.classList.add("hidden");
-    }
+    });
+
+    
     
     
 });
@@ -62,9 +66,4 @@ function logout(){
     setUserToken("");
     setUsername("");
     window.location.reload();
-}
-
-function isLoggedIn(){
-    
-    return loggedIn;
 }
