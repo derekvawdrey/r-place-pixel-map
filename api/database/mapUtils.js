@@ -5,7 +5,7 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 
-const MAP_NAME = "MAP_V1";
+const MAP_NAME = "MAP_V2";
 const mapCollection = client.db(MAP_NAME).collection("pixels");
 const mapCollectionData = client.db(MAP_NAME).collection("data");
 /**
@@ -26,8 +26,8 @@ const getBoard = async () => {
  * This is where we initalize the board with pixels
  */
 const initBoard = async () => {
-    // const MAP_WIDTH = 500;
-    // const MAP_HEIGHT = 500;
+    // const MAP_WIDTH = 100;
+    // const MAP_HEIGHT = 100;
     // for(let x = 0; x < MAP_WIDTH; x++){
     //     for(let y = 0; y < MAP_HEIGHT; y++){
     //         let pixel = new Pixel(x,y,255,255,255);
@@ -42,22 +42,20 @@ const initBoard = async () => {
  * @param {Pixel} pixel - The pixel object to update
  */
 const updatePixel = async (pixel) => {
-    if(loggedIn){
-        try {
-            const filter = { x: pixel.x, y: pixel.y };
-            const updateDoc = {
-                $set: {
-                    r: pixel.r,
-                    g: pixel.g,
-                    b: pixel.b,
-                }
-            };
-            await mapCollection.updateOne(filter, updateDoc);
-            console.log("Pixel updated successfully.");
-        } catch (error) {
-            console.error("Error occurred while updating pixel:", error);
-            throw error;
-        }
+    try {
+        const filter = { x: pixel.x, y: pixel.y };
+        const updateDoc = {
+            $set: {
+                r: pixel.r,
+                g: pixel.g,
+                b: pixel.b,
+            }
+        };
+        await mapCollection.updateOne(filter, updateDoc);
+        console.log("Pixel updated successfully.");
+    } catch (error) {
+        console.error("Error occurred while updating pixel:", error);
+        throw error;
     }
 }
 
