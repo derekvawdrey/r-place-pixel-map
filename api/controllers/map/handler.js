@@ -10,8 +10,13 @@ const {isAuthenticated} = require("../../database/authUtils");
  * @param {*} res 
  */
 const grabMap = async (req, res) => {
-    let mapData = getBoard();
-    res.send({map:mapData.pixels, data:mapData.data});
+    try {
+        let mapData = await getBoard(); // Await the asynchronous function call
+        res.send({map: mapData.pixels, data: mapData.data});
+    } catch (error) {
+        console.error("Error occurred while grabbing map:", error);
+        res.status(500).send({ error: "Internal Server Error" });
+    }
 }
 
 /**
