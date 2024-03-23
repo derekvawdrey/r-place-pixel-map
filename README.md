@@ -61,6 +61,7 @@ canvas to make sure the style works well on all devices and looks decent (I know
 - Map is now connected to the mongodb 
 - You must be logged in to draw to the map
 - Websocket also instantly updates map
+- There is an issue when you zoom where the pixels will be gray, but are only temporary. So I have disabled zooming for now till I have time to fix it
 
 ## Mock picture
 
