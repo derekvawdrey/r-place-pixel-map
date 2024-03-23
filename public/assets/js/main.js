@@ -58,15 +58,22 @@ window.onload = async function () {
 
 };
 
-const ws = new WebSocket('wss://startup.pixelatedplace.com:4000');
+const ws = new WebSocket('wss://startup.pixelatedplace.com');
 
 ws.onopen = function() {
   console.log('Connected to WebSocket server');
 };
-
 ws.onmessage = function(event) {
-  console.log('Received message:', event.data);
-};
+    console.log('Received message:', event.data);
+    try {
+      const eventData = JSON.parse(event.data); // Parse event data if it's a JSON string
+      let pixel = new Pixel(eventData.x, eventData.y, eventData.r, eventData.g, eventData.b);
+      currentGame.drawClientsidePixel(pixel);
+    } catch (error) {
+      console.error('Error parsing or creating Pixel:', error);
+    }
+  };
+  
 
 ws.onclose = function() {
   console.log('Connection to WebSocket server closed');

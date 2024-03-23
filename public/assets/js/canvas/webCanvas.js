@@ -333,6 +333,15 @@ class pixelatedCanvas {
         }
     }
 
+    /**
+     * Draws a client side pixel without sending it to the database
+     * @param {*} pixel 
+     */
+    drawClientsidePixel(pixel){
+        this.map.map[pixel.x+pixel.y*this.map.height] = pixel;
+        this.drawPixel(pixel);
+    }
+
 
     /**
      * Updates the position and drawing of the pixelBorder object
