@@ -22,8 +22,8 @@ server.on('upgrade', (request, socket, head) => {
     });
 });
 
-let connections = [];
-let id = 0;
+var connections = [];
+var id = 0;
 wss.on('connection', (ws) => {
     const connection = { id: ++id, alive: true, ws: ws };
     connections.push(connection);
@@ -64,4 +64,8 @@ setInterval(() => {
     });
 }, 10000);
 
-module.exports = { connections };
+function getConnections(){
+    return connections;
+}
+
+module.exports = { getConnections };
