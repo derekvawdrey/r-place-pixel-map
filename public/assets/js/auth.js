@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     response.then((username)=>{
         let loginLink = document.getElementById("loginLink");
         let registerLink = document.getElementById("registerLink");
-        let username = document.getElementById("username");
+        let usernameText = document.getElementById("username");
         let logoutLink = document.getElementById("logoutLink");
         console.log("Updating nav");
         if(loginLink){
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
         if(username){
-            username.innerText = username;
+            usernameText.innerText = username;
             profileLink.classList.remove("hidden");
         }
         if(logoutLink){
