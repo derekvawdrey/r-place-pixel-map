@@ -26,15 +26,15 @@ const getBoard = async () => {
  * This is where we initalize the board with pixels
  */
 const initBoard = async () => {
-    const MAP_WIDTH = 100;
-    const MAP_HEIGHT = 100;
-    // for(let x = 0; x < MAP_WIDTH; x++){
-    //     for(let y = 0; y < MAP_HEIGHT; y++){
-    //         let pixel = new Pixel(x,y,255,255,255);
-    //         mapCollection.insertOne(pixel);
-    //     }
-    // }
-    //mapCollectionData.insertOne({ width: MAP_WIDTH, height: MAP_HEIGHT });
+    const MAP_WIDTH = 1000;
+    const MAP_HEIGHT = 1000;
+    for(let x = 0; x < MAP_WIDTH; x++){
+        for(let y = 0; y < MAP_HEIGHT; y++){
+            let pixel = new Pixel(x,y,255,255,255);
+            mapCollection.insertOne(pixel);
+        }
+    }
+    mapCollectionData.insertOne({ width: MAP_WIDTH, height: MAP_HEIGHT });
 }
 
 /**
