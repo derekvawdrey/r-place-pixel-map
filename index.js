@@ -64,4 +64,4 @@ setInterval(() => {
     });
 }, 10000);
 
-module.exports = wss;
+module.exports = connections;

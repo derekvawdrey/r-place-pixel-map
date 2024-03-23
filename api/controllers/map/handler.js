@@ -2,7 +2,7 @@ const Pixel = require("./models/pixel");
 const pixelHelper = require("./helpers/pixelHelper");
 const { updatePixel, initBoard, getBoard } = require("../../database/mapUtils");
 const {isAuthenticated} = require("../../database/authUtils");
-const wss = require("../../../index.js")
+const connections = require("../../../index.js")
 
 /**
  * 
@@ -22,11 +22,9 @@ const grabMap = async (req, res) => {
 
 
 const sendPixelToWebsockets = (pixel) => {
-    wss.clients.forEach(function each(client) {
-        if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify(pixel)); 
-            console.log("Sending pixel", pixel);
-        }
+    connections.forEach(function each(client) {
+        client.ws.send(JSON.stringify(pixel)); 
+        console.log("Sending pixel", pixel);
     });
 }
 
