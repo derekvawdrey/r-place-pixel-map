@@ -21,7 +21,8 @@ const grabMap = async (req, res) => {
  */
 const drawPixel = async (req, res) => {
     const authToken = req.cookies['token'];
-    if(isAuthenticated(authToken)){
+    const authed = await isAuthenticated(authToken);
+    if(authed){
         try {
             const { x, y, r, g, b } = req.body;
             
