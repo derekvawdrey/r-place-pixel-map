@@ -87,4 +87,15 @@ const getUser = async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 };
 
-module.exports = { authenticate, register, getUser };
+/**
+ * Temporarily registers user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const logout = async (req, res) => {
+  setAuthCookie(res, null);
+  res.status(200).send({ username: user.username });
+};
+
+module.exports = { authenticate, register, getUser, logout };

@@ -158,6 +158,29 @@ class Api {
             }
         });
     }
+
+     /**
+     * Get user data from auth token
+     */
+     static async logout() {
+        const apiUrl = 'https://startup.pixelatedplace.com/api/v1/user/logout';
+    
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    credentials: "same-origin",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                resolve("");
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
     
 
 
