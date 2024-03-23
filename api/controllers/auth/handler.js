@@ -80,7 +80,7 @@ const getUser = async (req, res) => {
     if (user) {
       console.log(user.username);
       console.log(user);
-      res.send({ username: user.username });
+      res.status(200).send({ username: user.username });
       return;
     }
   }
