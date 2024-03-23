@@ -97,7 +97,8 @@ const getUserByToken = async (authToken) => {
 }
 
 const isAuthenticated = async (authToken) => {
-    if(getUserByToken(authToken)){
+    const user = await getUserByToken(authToken);
+    if(user && user != null){
         return true;
     }
     return false;
