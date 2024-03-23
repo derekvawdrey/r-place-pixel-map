@@ -69,5 +69,7 @@ async function register(){
 };
 
 function logout(){
-    window.location.reload();
+    Api.logout().then(()=>{
+        window.location.reload();
+    });
 }

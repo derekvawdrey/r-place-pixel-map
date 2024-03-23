@@ -174,7 +174,6 @@ class Api {
                         'Content-Type': 'application/json',
                     },
                 });
-    
                 resolve("");
             } catch (error) {
                 reject(error);
