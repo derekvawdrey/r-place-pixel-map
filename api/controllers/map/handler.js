@@ -48,7 +48,7 @@ const drawPixel = async (req, res) => {
  * Initalizes map
  */
 const initMap = async(req, res) => {
-    initBoard();
+    await initBoard();
     res.status(200).send("Initalized Board");
 }
 
