@@ -93,10 +93,11 @@ class pixelatedCanvas {
             return;
         }
 
-
+        const MAX_SIZE = 100*100;
         for (let position = 0; position < this.map.map.length; position += 1) {
                 let pixel = this.map.map[position];
                 this.drawPixel(pixel);
+            if(position == MAX_SIZE) break;
         }
     }
 
