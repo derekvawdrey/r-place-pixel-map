@@ -60,7 +60,7 @@ canvas to make sure the style works well on all devices and looks decent (I know
 - Users can now logout of accounts
 - Map is now connected to the mongodb 
 - You must be logged in to draw to the map
-- For this version, until the next project deadline I have removed websocket for the map. Meaning to see any changes by other people you have to reload the screen. 
+- Websocket also instantly updates map
 
 ## Mock picture
 
