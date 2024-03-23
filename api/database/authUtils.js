@@ -92,7 +92,7 @@ const createUser = async (username, password) => {
  * @param {*} authToken 
  */
 const getUserByToken = async (authToken) => {
-    const user = await userCollection.findOne({ token: authToken });
+    const user = userCollection.findOne({ token: authToken });
     return user;
 }
 

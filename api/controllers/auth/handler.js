@@ -75,7 +75,7 @@ const register = async (req, res) => {
 const getUser = async (req, res) => {
   const authToken = req.cookies['token'];
   if(authToken){
-    const user = getUserByToken(authToken);
+    const user = await getUserByToken(authToken);
     if (user) {
       console.log(user.username);
       console.log(user);
