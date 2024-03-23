@@ -88,14 +88,14 @@ const getUser = async (req, res) => {
 };
 
 /**
- * Temporarily registers user
+ * Logouts the user
  * @param {*} req 
  * @param {*} res 
  * @returns 
  */
 const logout = async (req, res) => {
   setAuthCookie(res, null);
-  res.status(200).send({ username: user.username });
+  res.status(200).send("Logged out");
 };
 
 module.exports = { authenticate, register, getUser, logout };

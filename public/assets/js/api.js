@@ -168,7 +168,7 @@ class Api {
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await fetch(apiUrl, {
-                    method: 'GET',
+                    method: 'POST',
                     credentials: "same-origin",
                     headers: {
                         'Content-Type': 'application/json',
