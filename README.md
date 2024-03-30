@@ -65,6 +65,7 @@ canvas to make sure the style works well on all devices and looks decent (I know
 
 ## Things added for websocket 
 - Map is now connected via websocket, any data processed by server will be sent to all websocket endpoints
+- Pixel data is now updated realtime via websocket
 
 ## Mock picture
 
