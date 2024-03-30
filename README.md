@@ -63,6 +63,9 @@ canvas to make sure the style works well on all devices and looks decent (I know
 - Websocket also instantly updates map
 - There is an issue when you zoom where the pixels will be gray, but are only temporary. So I have disabled zooming for now till I have time to fix it
 
+## Things added for websocket 
+- Map is now connected via websocket, any data processed by server will be sent to all websocket endpoints
+
 ## Mock picture
 
 ![](/docs/mock1.png)
