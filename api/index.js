@@ -1,8 +1,8 @@
 'use strict';
 
 const http = require('http');
-const app = require('./api/app');
-const { setupWebSocket } = require('./api/websocket');
+const app = require('./app');
+const { setupWebSocket } = require('./websocket');
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
