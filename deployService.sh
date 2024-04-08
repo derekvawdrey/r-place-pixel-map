@@ -36,7 +36,7 @@ printf "\n----> Copy the distribution package to the target\n"
 scp -r -i "$key" dist/* ubuntu@$hostname:services/$service
 
 # Step 4
-printf "\n----> Deploy the service on the target\n"
+printf "\n---   -> Deploy the service on the target\n"
 ssh -i "$key" ubuntu@$hostname << ENDSSH
 bash -i
 cd services/${service}
